@@ -23,6 +23,7 @@ atribuído a uma consulta com um dentista em uma determinada data e
 hora.
 
 **Requerimentos técnicos**
+
 A aplicação deve ser desenvolvida em camadas:
 
 - Camada de entidade de negócios: são as classes Java do nosso negócio
@@ -47,6 +48,7 @@ gerada e realizando testes unitários para garantir a qualidade dos
 desenvolvimentos.
 
 **Avanços**
+
 O trabalho terá uma única entrega final, mas para que você possa se organizar,
 sugerimos que progrida da seguinte forma:
 
