@@ -4,8 +4,10 @@ import java.util.List;
 
 public interface IService<T> {
 
-    T salvar(T t);
+    T registrar(T t);
     List<T> buscarTodos();
     String excluir(Integer id);
+
+    T modificar(T t, int id);
 
 }

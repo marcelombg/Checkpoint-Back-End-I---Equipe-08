@@ -1,6 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
-import com.example.CheckpointBackEndIEquipe08.model.Dentista;
+import com.example.CheckpointBackEndIEquipe08.entity.Dentista;
 import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +18,10 @@ public class DentistaController {
     public Dentista salvar(
             @RequestParam(value = "id") Integer id,
             @RequestParam(value = "nome") String nome,
-            @RequestParam(value = "email") String email,
-            @RequestParam(value = "numMatrícula") Integer numMatrícula,
-            @RequestParam(value = "atendeConvenio") String atendeConvenio){
+            @RequestParam(value = "sobrenome") String sobrenome,
+            @RequestParam(value = "matriculaCadastro") Integer matriculaCadastro){
 
-        return dentistaService.salvar(new Dentista(id, nome, email, numMatrícula, atendeConvenio));
+        return dentistaService.registrar(new Dentista(id, nome, sobrenome, matriculaCadastro));
     }
 
     @GetMapping("/buscar")

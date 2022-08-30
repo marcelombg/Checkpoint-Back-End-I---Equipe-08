@@ -1,10 +1,11 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
-import com.example.CheckpointBackEndIEquipe08.model.Paciente;
+import com.example.CheckpointBackEndIEquipe08.entity.Paciente;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -18,11 +19,13 @@ public class PacienteController {
     public Paciente salvar(
             @RequestParam(value = "id") Integer id,
             @RequestParam(value = "nome") String nome,
-            @RequestParam(value = "email") String email,
-            @RequestParam(value = "senha") String senha,
-            @RequestParam(value = "nivelAcesso") String nivelAcesso){
+            @RequestParam(value = "sobrenome") String sobrenome,
+            @RequestParam(value = "endereçoId") Integer endereçoId,
+            @RequestParam(value = "RG") String RG,
+            @RequestParam(value = "dataAlta")Date dataAlta)
+    {
 
-        return pacienteService.salvar(new Paciente(id, nome, email, senha, nivelAcesso));
+        return pacienteService.registrar(new Paciente(id, nome, sobrenome, endereçoId, RG, dataAlta));
     }
 
     @GetMapping("/buscar")

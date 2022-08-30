@@ -1,6 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
-import com.example.CheckpointBackEndIEquipe08.model.Dentista;
+import com.example.CheckpointBackEndIEquipe08.entity.Dentista;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class DentistaServiceImpl implements IService<Dentista> {
     private static Map<Integer, Dentista> dentistaMap = new HashMap<>();
 
     @Override
-    public Dentista salvar(Dentista dentista) {
+    public Dentista registrar(Dentista dentista) {
         dentistaMap.put(dentista.getId(), dentista);
         return dentista;
     }
@@ -28,6 +28,11 @@ public class DentistaServiceImpl implements IService<Dentista> {
     @Override
     public String excluir(Integer id) {
         dentistaMap.remove(id);
-        return "Usuário removido";
+        return "Paciente removido";
+    }
+
+    @Override
+    public Dentista modificar(Dentista dentista, int id) {
+        return null;
     }
 }
