@@ -15,7 +15,7 @@ import java.util.Map;
 @Service
 public class DentistaServiceImpl implements IService<DentistaDTO> {
 
-    private static Map<Integer, DentistaEntitie> dentistaMap = new HashMap<>();
+//    private static Map<Integer, DentistaEntitie> dentistaMap = new HashMap<>();
 
     @Autowired
     private DentistaRepository dentistaRepository;
@@ -28,14 +28,19 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     }
 
     @Override
+    public DentistaDTO buscarID(int id) {
+        return new DentistaDTO(dentistaRepository.getById(id));
+    }
+
+    @Override
     public List<DentistaDTO> buscarTodos() {
         return null;
     }
 
     @Override
     public String excluir(Integer id) {
-        dentistaMap.remove(id);
-        return "Paciente removido";
+        dentistaRepository.excluir(id);
+        return "Dentista removido";
     }
 
     @Override
@@ -43,14 +48,7 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         return null;
     }
 
-    @Override
-    public DentistaDTO buscarID(int id) {
-        return new DentistaDTO(dentistaRepository.getById(id));
-    }
-
     public int buscarNome(String name) {
-        return dentistaRepository.getByName(name);
+        return dentistaRepository.buscarNome(name);
     }
-
-
 }

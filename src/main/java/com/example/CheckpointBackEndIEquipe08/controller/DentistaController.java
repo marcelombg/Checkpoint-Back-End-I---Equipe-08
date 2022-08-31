@@ -25,15 +25,31 @@ public class DentistaController {
 //        return dentistaService.registrar(new Dentista(nome, sobrenome, matriculaCadastro));
 //    }
 
+    @PostMapping
+    public DentistaDTO registrar(@RequestBody DentistaDTO dentistaDTO) {
+        return dentistaService.registrar(dentistaDTO);
+    }
+
     @GetMapping("/buscar")
     public List<DentistaDTO> buscarTodos(){
         return dentistaService.buscarTodos();
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public String excluir(@PathVariable Integer id){
         return dentistaService.excluir(id);
     }
+
+    @PutMapping("/{id}")
+    public DentistaDTO modificar(@RequestBody DentistaDTO dentistaDTO, @PathVariable int id) {
+        return dentistaService.modificar(dentistaDTO, id);
+    }
+
+    @GetMapping("/{id}")
+    public DentistaDTO buscarID(@PathVariable int id) {
+        return dentistaService.buscarID(id);
+    }
+
 
     //http://localhost:8082/dentista?id=1&nome=Marcelo&email=marcelo@email.com&numMatrícula=123456789&atendeConvenio=Sim
 }

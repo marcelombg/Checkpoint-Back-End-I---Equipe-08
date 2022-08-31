@@ -15,27 +15,27 @@ public class PacienteRepository {
 
     private static int idPaciente = 1;
 
-    public PacienteEntitie create(PacienteEntitie pacienteEntitie) {
+    public PacienteEntitie registrar(PacienteEntitie pacienteEntitie) {
         pacienteEntitie.setId(idPaciente++);
         pacienteMap.put(pacienteEntitie.getId(), pacienteEntitie);
         return pacienteEntitie;
     }
 
-    public PacienteEntitie getById(int id) {
+    public PacienteEntitie buscarID(int id) {
         return pacienteMap.get(id);
     }
 
-    public String delete(int id){
+    public String excluir(int id){
         pacienteMap.remove(id);
         return "Paciente deletado";
     }
 
-    public PacienteEntitie update(PacienteEntitie pacienteEntitie){
+    public PacienteEntitie modificar(PacienteEntitie pacienteEntitie){
         pacienteMap.put(pacienteEntitie.getId(), pacienteEntitie);
         return pacienteEntitie;
     }
 
-    public List<PacienteEntitie> getAll(){
+    public List<PacienteEntitie> buscarTodos(){
         List<PacienteEntitie> pacienteEntitie = new ArrayList<>(pacienteMap.values());
         return pacienteEntitie;
 //        return new ArrayList<>(pacienteMap.values());

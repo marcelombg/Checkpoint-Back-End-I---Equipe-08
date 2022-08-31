@@ -1,11 +1,11 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntitie;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
 public class PacienteDTO {
-
     private String nome;
     private String sobrenome;
     private Integer endereçoId;

@@ -25,23 +25,23 @@ public class DentistaRepository {
         return dentistaMap.get(id);
     }
 
-    public String delete(int id){
+    public String excluir(int id){
         dentistaMap.remove(id);
         return "Dentista deletado";
     }
 
-    public DentistaEntitie update(DentistaEntitie dentistaEntitie){
+    public DentistaEntitie modificar(DentistaEntitie dentistaEntitie){
         dentistaMap.put(dentistaEntitie.getId(), dentistaEntitie);
         return dentistaEntitie;
     }
 
-    public List<DentistaEntitie> getAll(){
+    public List<DentistaEntitie> buscarTodos(){
         List<DentistaEntitie> dentistaEntities = new ArrayList<>(dentistaMap.values());
         return dentistaEntities;
 //        return new ArrayList<>(dentistaMap.values());
     }
 
-    public int getByName(String name) {
+    public int buscarNome(String name) {
         for (DentistaEntitie dentistaEntitie : dentistaMap.values()) {
             String nomeDentista = dentistaEntitie.getNome();
             if (nomeDentista.equalsIgnoreCase(name))

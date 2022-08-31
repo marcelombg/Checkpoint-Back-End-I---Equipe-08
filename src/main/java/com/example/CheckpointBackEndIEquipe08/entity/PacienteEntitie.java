@@ -1,17 +1,22 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteEntitie {
 
+    @JsonIgnore
     private Integer id;
     private String nome;
     private String sobrenome;
     private Integer endereçoId;
     private String RG;
     private Date dataAlta;
+
 
     public PacienteEntitie(PacienteDTO pacienteDTO) {
         this.nome = pacienteDTO.getNome();
@@ -68,4 +73,5 @@ public class PacienteEntitie {
     public void setDataAlta(Date dataAlta) {
         this.dataAlta = dataAlta;
     }
+
 }
