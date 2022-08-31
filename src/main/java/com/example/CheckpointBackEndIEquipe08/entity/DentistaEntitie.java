@@ -9,6 +9,9 @@ public class DentistaEntitie {
     private String sobrenome;
     private Integer matriculaCadastro;
 
+    public DentistaEntitie() {
+    }
+
     public DentistaEntitie(DentistaDTO dentistaDTO) {
         this.nome = dentistaDTO.getNome();
         this.sobrenome = dentistaDTO.getSobrenome();

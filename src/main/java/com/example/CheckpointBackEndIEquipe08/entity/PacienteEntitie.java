@@ -17,6 +17,8 @@ public class PacienteEntitie {
     private String RG;
     private Date dataAlta;
 
+    public PacienteEntitie() {
+    }
 
     public PacienteEntitie(PacienteDTO pacienteDTO) {
         this.nome = pacienteDTO.getNome();

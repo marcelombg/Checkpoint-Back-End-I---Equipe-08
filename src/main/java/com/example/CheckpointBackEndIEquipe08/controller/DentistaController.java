@@ -2,8 +2,11 @@ package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,9 +28,19 @@ public class DentistaController {
 //        return dentistaService.registrar(new Dentista(nome, sobrenome, matriculaCadastro));
 //    }
 
-    @PostMapping
-    public DentistaDTO registrar(@RequestBody DentistaDTO dentistaDTO) {
-        return dentistaService.registrar(dentistaDTO);
+    @PostMapping("/registrar")
+    public ResponseEntity<DentistaDTO> registrar(@RequestBody DentistaDTO dentistaDTO) {
+
+        ResponseEntity responseEntity = null;
+
+        if (dentistaDTO.getNome() != null){
+            DentistaDTO dentistaDTO1 = dentistaService.registrar(dentistaDTO);
+            responseEntity = new ResponseEntity<>(dentistaDTO1, HttpStatus.OK);
+        } else {
+            responseEntity = new ResponseEntity<>("Nome não preenchido", HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
     }
 
     @GetMapping("/buscar")
