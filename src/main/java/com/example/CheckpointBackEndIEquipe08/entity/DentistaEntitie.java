@@ -1,17 +1,18 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
-public class Dentista {
+import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+
+public class DentistaEntitie {
 
     private Integer id;
     private String nome;
     private String sobrenome;
     private Integer matriculaCadastro;
 
-    public Dentista(Integer id, String nome, String sobrenome, Integer matriculaCadastro) {
-        this.id = id;
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.matriculaCadastro = matriculaCadastro;
+    public DentistaEntitie(DentistaDTO dentistaDTO) {
+        this.nome = dentistaDTO.getNome();
+        this.sobrenome = dentistaDTO.getSobrenome();
+        this.matriculaCadastro = dentistaDTO.getMatriculaCadastro();
     }
 
     public Integer getId() {

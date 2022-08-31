@@ -4,7 +4,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 
 import java.util.Date;
 
-public class Paciente {
+public class PacienteEntitie {
 
     private Integer id;
     private String nome;
@@ -13,7 +13,7 @@ public class Paciente {
     private String RG;
     private Date dataAlta;
 
-    public Paciente(PacienteDTO pacienteDTO) {
+    public PacienteEntitie(PacienteDTO pacienteDTO) {
         this.nome = pacienteDTO.getNome();
         this.sobrenome = pacienteDTO.getSobrenome();
         this.endereçoId = pacienteDTO.getEndereçoId();

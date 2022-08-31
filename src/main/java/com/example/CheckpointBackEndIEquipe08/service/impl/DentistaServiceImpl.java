@@ -1,7 +1,10 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
-import com.example.CheckpointBackEndIEquipe08.entity.Dentista;
+import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.repository.DentistaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,19 +13,23 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DentistaServiceImpl implements IService<Dentista> {
+public class DentistaServiceImpl implements IService<DentistaDTO> {
 
-    private static Map<Integer, Dentista> dentistaMap = new HashMap<>();
+    private static Map<Integer, DentistaEntitie> dentistaMap = new HashMap<>();
+
+    @Autowired
+    private DentistaRepository dentistaRepository;
 
     @Override
-    public Dentista registrar(Dentista dentista) {
-        dentistaMap.put(dentista.getId(), dentista);
-        return dentista;
+    public DentistaDTO registrar(DentistaDTO dentistaDTO) {
+        DentistaEntitie dentistaEntitie = new DentistaEntitie(dentistaDTO);
+        dentistaRepository.create(dentistaEntitie);
+        return dentistaDTO;
     }
 
     @Override
-    public List<Dentista> buscarTodos() {
-        return new ArrayList<>(dentistaMap.values());
+    public List<DentistaDTO> buscarTodos() {
+        return null;
     }
 
     @Override
@@ -32,7 +39,18 @@ public class DentistaServiceImpl implements IService<Dentista> {
     }
 
     @Override
-    public Dentista modificar(Dentista dentista, int id) {
+    public DentistaDTO modificar(DentistaDTO dentistaDTO, int id) {
         return null;
     }
+
+    @Override
+    public DentistaDTO buscarID(int id) {
+        return new DentistaDTO(dentistaRepository.getById(id));
+    }
+
+    public int buscarNome(String name) {
+        return dentistaRepository.getByName(name);
+    }
+
+
 }
