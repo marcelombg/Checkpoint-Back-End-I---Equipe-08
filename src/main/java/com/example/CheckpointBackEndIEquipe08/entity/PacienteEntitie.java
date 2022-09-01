@@ -4,6 +4,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

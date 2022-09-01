@@ -57,9 +57,9 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
         for (PacienteEntitie paciente : pacienteEntities) {
             String nomePaciente = buscarNome(paciente);
-            PacienteDTO productDTO = mapperEntityToDTO(paciente);
-            productDTO.setNome(nomePaciente);
-            pacienteDTOS.add(productDTO);
+            PacienteDTO pacienteDTO = mapperEntityToDTO(paciente);
+            pacienteDTO.setNome(nomePaciente);
+            pacienteDTOS.add(pacienteDTO);
         }
         return pacienteDTOS;
     }
