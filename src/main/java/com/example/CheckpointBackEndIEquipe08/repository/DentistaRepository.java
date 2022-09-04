@@ -15,13 +15,13 @@ public class DentistaRepository {
 
     private static int idDentista = 1;
 
-    public DentistaEntitie create(DentistaEntitie dentistaEntitie) {
+    public DentistaEntitie registrar(DentistaEntitie dentistaEntitie) {
         dentistaEntitie.setId(idDentista++);
         dentistaMap.put(dentistaEntitie.getId(), dentistaEntitie);
         return dentistaEntitie;
     }
 
-    public DentistaEntitie getById(int id) {
+    public DentistaEntitie buscarId(int id) {
         return dentistaMap.get(id);
     }
 

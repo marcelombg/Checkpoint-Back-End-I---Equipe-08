@@ -1,5 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.repository;
 
+import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntitie;
 import org.springframework.stereotype.Repository;
 
@@ -39,5 +40,14 @@ public class PacienteRepository {
         List<PacienteEntitie> pacienteEntitie = new ArrayList<>(pacienteMap.values());
         return pacienteEntitie;
 //        return new ArrayList<>(pacienteMap.values());
+    }
+
+    public int buscarNome(String name) {
+        for (PacienteEntitie pacienteEntitie : pacienteMap.values()) {
+            String nomeDentista = pacienteEntitie.getNome();
+            if (nomeDentista.equalsIgnoreCase(name))
+                return pacienteEntitie.getId();
+        }
+        return 0;
     }
 }

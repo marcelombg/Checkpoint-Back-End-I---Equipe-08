@@ -5,18 +5,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 import java.util.Date;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
     private String nome;
     private String sobrenome;
-    private Integer endereçoId;
+    private Integer enderecoId;
     private String RG;
     private Date dataAlta;
 
     public PacienteDTO(PacienteEntitie pacienteEntitie) {
         this.nome = pacienteEntitie.getNome();
         this.sobrenome = pacienteEntitie.getSobrenome();
-        this.endereçoId = pacienteEntitie.getEndereçoId();
+        this.enderecoId = pacienteEntitie.getEnderecoId();
         this.RG = pacienteEntitie.getRG();
         this.dataAlta = pacienteEntitie.getDataAlta();
     }
@@ -40,12 +40,12 @@ public class PacienteDTO {
         this.sobrenome = sobrenome;
     }
 
-    public Integer getEndereçoId() {
-        return endereçoId;
+    public Integer getEnderecoId() {
+        return enderecoId;
     }
 
-    public void setEndereçoId(Integer endereçoId) {
-        this.endereçoId = endereçoId;
+    public void setEnderecoId(Integer enderecoId) {
+        this.enderecoId = enderecoId;
     }
 
     public String getRG() {

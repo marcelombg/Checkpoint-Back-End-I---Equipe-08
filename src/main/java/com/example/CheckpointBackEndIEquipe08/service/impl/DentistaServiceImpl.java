@@ -23,23 +23,23 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     @Autowired
     private DentistaRepository dentistaRepository;
 
-    @Autowired
-    private PacienteServiceImpl pacienteService;
+    /*@Autowired
+    private PacienteServiceImpl pacienteService;*/
     @Override
     public DentistaDTO registrar(DentistaDTO dentistaDTO) {
-        DentistaEntitie dentistaEntitie = new DentistaEntitie(dentistaDTO);
-        dentistaRepository.create(dentistaEntitie);
+        DentistaEntitie dentistaEntitie = mapperDTOToEntity(dentistaDTO);
+        dentistaRepository.registrar(dentistaEntitie);
         return dentistaDTO;
     }
 
     @Override
     public DentistaDTO buscarID(int id) {
 
-        DentistaEntitie dentistaEntitie = dentistaRepository.getById(id);
+        DentistaEntitie dentistaEntitie = dentistaRepository.buscarId(id);
         DentistaDTO dentistaDTO = mapperEntityToDTO(dentistaEntitie);
 
-        String nomeDentista = buscarNome(dentistaEntitie);
-        dentistaDTO.setNome(nomeDentista);
+        /*String nomeDentista = buscarNome(dentistaEntitie);
+        dentistaDTO.setNome(nomeDentista);*/
 
         //productDTO.setCategory(categoryService.getById(productEntity.getCategoryId()).getName());
         return dentistaDTO;
@@ -49,8 +49,8 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
 
     private String buscarNome(DentistaEntitie dentistaEntitie) {
         int dentistaId = dentistaEntitie.getId();
-        PacienteDTO pacienteDTO = pacienteService.buscarID(dentistaId);
-        String dentistaNome = pacienteDTO.getNome();
+        DentistaDTO dentistaDTO = buscarID(dentistaId);
+        String dentistaNome = dentistaDTO.getNome();
         return dentistaNome;
     }
     @Override
@@ -59,9 +59,9 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         List<DentistaDTO> dentistaDTOS = new ArrayList<>();
 
         for (DentistaEntitie dentistaEntitie : dentistaEntities) {
-            String nomeDentista = buscarNome(dentistaEntitie);
+            /*String nomeDentista = buscarNome(dentistaEntitie);*/
             DentistaDTO dentistaDTO = mapperEntityToDTO(dentistaEntitie);
-            dentistaDTO.setNome(nomeDentista);
+            /*dentistaDTO.setNome(nomeDentista);*/
             dentistaDTOS.add(dentistaDTO);
         }
         return dentistaDTOS;
@@ -76,12 +76,35 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
 
     @Override
     public DentistaDTO modificar(DentistaDTO dentistaDTO, int id) {
-        return null;
+        DentistaEntitie dentistaEntitie = mapperDTOToEntity(dentistaDTO);
+
+        if(dentistaRepository.buscarId(id) != null){
+
+            dentistaEntitie.setId(id);
+            dentistaRepository.modificar(dentistaEntitie);
+            return dentistaDTO;
+        }
+
+        else{
+            dentistaRepository.registrar(dentistaEntitie);
+            return dentistaDTO;
+        }
+        /*String nomeDentista = dentistaDTO.getNome();
+
+        int dentistaId = buscarNome(nomeDentista);
+
+        dentistaEntitie.setId(id);
+
+        if (dentistaEntitie.getId() != 0){
+            dentistaRepository.registrar(dentistaEntitie);
+            return dentistaDTO;
+        }
+        return null;*/
     }
 
-    public int buscarNome(String name) {
+    /*public int buscarNome(String name) {
         return dentistaRepository.buscarNome(name);
-    }
+    }*/
 
     private DentistaEntitie mapperDTOToEntity(DentistaDTO dentistaDTO){
         ObjectMapper objectMapper = new ObjectMapper();

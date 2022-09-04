@@ -7,14 +7,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 import java.util.Date;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class PacienteEntitie {
 
-    @JsonIgnore
+
     private Integer id;
     private String nome;
     private String sobrenome;
-    private Integer endereçoId;
+    /*@JsonIgnore*/  // Vai ser usado qdo tiver o endereço
+    private Integer enderecoId;
     private String RG;
     private Date dataAlta;
 
@@ -24,7 +25,7 @@ public class PacienteEntitie {
     public PacienteEntitie(PacienteDTO pacienteDTO) {
         this.nome = pacienteDTO.getNome();
         this.sobrenome = pacienteDTO.getSobrenome();
-        this.endereçoId = pacienteDTO.getEndereçoId();
+        this.enderecoId = pacienteDTO.getEnderecoId();
         this.RG = pacienteDTO.getRG();
         this.dataAlta = pacienteDTO.getDataAlta();
     }
@@ -53,12 +54,12 @@ public class PacienteEntitie {
         this.sobrenome = sobrenome;
     }
 
-    public Integer getEndereçoId() {
-        return endereçoId;
+    public Integer getEnderecoId() {
+        return enderecoId;
     }
 
-    public void setEndereçoId(Integer endereçoId) {
-        this.endereçoId = endereçoId;
+    public void setEnderecoId(Integer enderecoId) {
+        this.enderecoId = enderecoId;
     }
 
     public String getRG() {

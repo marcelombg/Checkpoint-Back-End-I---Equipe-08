@@ -59,8 +59,17 @@ public class DentistaController {
     }
 
     @GetMapping("/{id}")
-    public DentistaDTO buscarID(@PathVariable int id) {
-        return dentistaService.buscarID(id);
+    public ResponseEntity buscarID(@PathVariable int id) {
+        ResponseEntity responseEntity = null;
+
+        DentistaDTO dentistaDTO = dentistaService.buscarID(id);
+
+        if (dentistaDTO != null){
+            responseEntity = new ResponseEntity<>(dentistaDTO, HttpStatus.OK);
+        } else {
+            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
     }
 
 
