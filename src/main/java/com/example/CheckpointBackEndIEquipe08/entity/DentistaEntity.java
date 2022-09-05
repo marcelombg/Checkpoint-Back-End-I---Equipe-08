@@ -1,20 +1,19 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-public class DentistaEntitie {
+public class DentistaEntity {
 
     private Integer id;
     private String nome;
     private String sobrenome;
     private Integer matriculaCadastro;
 
-    public DentistaEntitie() {
+    public DentistaEntity() {
     }
 
-    public DentistaEntitie(DentistaDTO dentistaDTO) {
+    public DentistaEntity(DentistaDTO dentistaDTO) {
         this.nome = dentistaDTO.getNome();
         this.sobrenome = dentistaDTO.getSobrenome();
         this.matriculaCadastro = dentistaDTO.getMatriculaCadastro();

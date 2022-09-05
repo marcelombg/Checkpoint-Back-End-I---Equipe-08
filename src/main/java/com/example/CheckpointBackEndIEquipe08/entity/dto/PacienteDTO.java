@@ -1,9 +1,8 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntitie;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.time.LocalDate;
 import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
@@ -13,12 +12,12 @@ public class PacienteDTO {
     private String RG;
     private Date dataAlta;
 
-    public PacienteDTO(PacienteEntitie pacienteEntitie) {
-        this.nome = pacienteEntitie.getNome();
-        this.sobrenome = pacienteEntitie.getSobrenome();
-        this.enderecoId = pacienteEntitie.getEnderecoId();
-        this.RG = pacienteEntitie.getRG();
-        this.dataAlta = pacienteEntitie.getDataAlta();
+    public PacienteDTO(PacienteEntity pacienteEntity) {
+        this.nome = pacienteEntity.getNome();
+        this.sobrenome = pacienteEntity.getSobrenome();
+        this.enderecoId = pacienteEntity.getEnderecoId();
+        this.RG = pacienteEntity.getRG();
+        this.dataAlta = pacienteEntity.getDataAlta();
     }
 
     public PacienteDTO() {

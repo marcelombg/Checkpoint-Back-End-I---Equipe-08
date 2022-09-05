@@ -1,8 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
-import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntitie;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.PacienteRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
@@ -26,15 +24,15 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
     @Override
     public PacienteDTO registrar(PacienteDTO pacienteDTO) {
-        PacienteEntitie pacienteEntitie = mapperDTOToEntity(pacienteDTO);
-        pacienteRepository.registrar(pacienteEntitie);
+        PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
+        pacienteRepository.registrar(pacienteEntity);
         return pacienteDTO;
     }
 
     @Override
     public PacienteDTO buscarID(int id) {
-        PacienteEntitie pacienteEntitie = pacienteRepository.buscarID(id);
-        PacienteDTO pacienteDTO = mapperEntityToDTO(pacienteEntitie);
+        PacienteEntity pacienteEntity = pacienteRepository.buscarID(id);
+        PacienteDTO pacienteDTO = mapperEntityToDTO(pacienteEntity);
 
         /*String nomePaciente = buscarNome(pacienteEntitie);
         pacienteDTO.setNome(nomePaciente);*/
@@ -43,8 +41,8 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
         return pacienteDTO;
     }
 
-    private String buscarNome(PacienteEntitie pacienteEntitie) {
-        int pacienteId = pacienteEntitie.getId();
+    private String buscarNome(PacienteEntity pacienteEntity) {
+        int pacienteId = pacienteEntity.getId();
         PacienteDTO pacienteDTO = buscarID(pacienteId);
         String pacienteNome = pacienteDTO.getNome();
         return pacienteNome;
@@ -52,10 +50,10 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
     @Override
     public List<PacienteDTO> buscarTodos() {
-        List<PacienteEntitie> pacienteEntities = pacienteRepository.buscarTodos();
+        List<PacienteEntity> pacienteEntities = pacienteRepository.buscarTodos();
         List<PacienteDTO> pacienteDTOS = new ArrayList<>();
 
-        for (PacienteEntitie paciente : pacienteEntities) {
+        for (PacienteEntity paciente : pacienteEntities) {
             /*String nomePaciente = buscarNome(paciente);*/
             PacienteDTO pacienteDTO = mapperEntityToDTO(paciente);
             /*pacienteDTO.setNome(nomePaciente);*/
@@ -72,16 +70,16 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
     @Override
     public PacienteDTO modificar(PacienteDTO pacienteDTO, int id) {
-        PacienteEntitie pacienteEntitie = mapperDTOToEntity(pacienteDTO);
+        PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
 
         if (pacienteRepository.buscarID(id) != null){
 
-            pacienteEntitie.setId(id);
-            pacienteRepository.modificar(pacienteEntitie);
+            pacienteEntity.setId(id);
+            pacienteRepository.modificar(pacienteEntity);
             return pacienteDTO;
         }
         else {
-            pacienteRepository.registrar(pacienteEntitie);
+            pacienteRepository.registrar(pacienteEntity);
             return pacienteDTO;
         }
 
@@ -103,15 +101,15 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
         return pacienteRepository.buscarNome(name);
     }*/
 
-    private PacienteEntitie mapperDTOToEntity(PacienteDTO pacienteDTO){
+    private PacienteEntity mapperDTOToEntity(PacienteDTO pacienteDTO){
         ObjectMapper objectMapper = new ObjectMapper();
-        PacienteEntitie pacienteEntitie = objectMapper.convertValue(pacienteDTO, PacienteEntitie.class);
-        return pacienteEntitie;
+        PacienteEntity pacienteEntity = objectMapper.convertValue(pacienteDTO, PacienteEntity.class);
+        return pacienteEntity;
     }
 
-    private PacienteDTO mapperEntityToDTO(PacienteEntitie pacienteEntitie){
+    private PacienteDTO mapperEntityToDTO(PacienteEntity pacienteEntity){
         ObjectMapper objectMapper = new ObjectMapper();
-        PacienteDTO pacienteDTO = objectMapper.convertValue(pacienteEntitie, PacienteDTO.class);
+        PacienteDTO pacienteDTO = objectMapper.convertValue(pacienteEntity, PacienteDTO.class);
         return pacienteDTO;
     }
 }

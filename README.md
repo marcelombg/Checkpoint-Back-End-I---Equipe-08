@@ -18,8 +18,8 @@ usuário e senha. Permitir que qualquer pessoa logada registre uma
 consulta, mas apenas aqueles que têm uma função de administração pode
 gerenciar dentistaEntities e pacientes.
 
-● Registrar consulta: Deve ser possível permitir que um pacienteEntitie seja
-atribuído a uma consulta com um dentistaEntitie em uma determinada data e
+● Registrar consulta: Deve ser possível permitir que um pacienteEntity seja
+atribuído a uma consulta com um dentistaEntity em uma determinada data e
 hora.
 
 **Requerimentos técnicos**

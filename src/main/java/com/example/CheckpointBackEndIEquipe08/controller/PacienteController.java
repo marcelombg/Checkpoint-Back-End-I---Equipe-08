@@ -1,7 +1,5 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntitie;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

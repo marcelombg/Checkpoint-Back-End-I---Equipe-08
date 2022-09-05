@@ -1,6 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.repository;
 
-import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
+import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,17 +11,17 @@ import java.util.Map;
 @Repository
 public class DentistaRepository {
 
-    private static Map<Integer, DentistaEntitie> dentistaMap = new HashMap<>();
+    private static Map<Integer, DentistaEntity> dentistaMap = new HashMap<>();
 
     private static int idDentista = 1;
 
-    public DentistaEntitie registrar(DentistaEntitie dentistaEntitie) {
-        dentistaEntitie.setId(idDentista++);
-        dentistaMap.put(dentistaEntitie.getId(), dentistaEntitie);
-        return dentistaEntitie;
+    public DentistaEntity registrar(DentistaEntity dentistaEntity) {
+        dentistaEntity.setId(idDentista++);
+        dentistaMap.put(dentistaEntity.getId(), dentistaEntity);
+        return dentistaEntity;
     }
 
-    public DentistaEntitie buscarId(int id) {
+    public DentistaEntity buscarId(int id) {
         return dentistaMap.get(id);
     }
 
@@ -30,22 +30,22 @@ public class DentistaRepository {
         return "Dentista deletado";
     }
 
-    public DentistaEntitie modificar(DentistaEntitie dentistaEntitie){
-        dentistaMap.put(dentistaEntitie.getId(), dentistaEntitie);
-        return dentistaEntitie;
+    public DentistaEntity modificar(DentistaEntity dentistaEntity){
+        dentistaMap.put(dentistaEntity.getId(), dentistaEntity);
+        return dentistaEntity;
     }
 
-    public List<DentistaEntitie> buscarTodos(){
-        List<DentistaEntitie> dentistaEntities = new ArrayList<>(dentistaMap.values());
+    public List<DentistaEntity> buscarTodos(){
+        List<DentistaEntity> dentistaEntities = new ArrayList<>(dentistaMap.values());
         return dentistaEntities;
 //        return new ArrayList<>(dentistaMap.values());
     }
 
     public int buscarNome(String name) {
-        for (DentistaEntitie dentistaEntitie : dentistaMap.values()) {
-            String nomeDentista = dentistaEntitie.getNome();
+        for (DentistaEntity dentistaEntity : dentistaMap.values()) {
+            String nomeDentista = dentistaEntity.getNome();
             if (nomeDentista.equalsIgnoreCase(name))
-                return dentistaEntitie.getId();
+                return dentistaEntity.getId();
         }
         return 0;
     }

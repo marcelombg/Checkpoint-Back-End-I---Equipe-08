@@ -1,14 +1,11 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 
-public class PacienteEntitie {
+public class PacienteEntity {
 
 
     private Integer id;
@@ -19,10 +16,10 @@ public class PacienteEntitie {
     private String RG;
     private Date dataAlta;
 
-    public PacienteEntitie() {
+    public PacienteEntity() {
     }
 
-    public PacienteEntitie(PacienteDTO pacienteDTO) {
+    public PacienteEntity(PacienteDTO pacienteDTO) {
         this.nome = pacienteDTO.getNome();
         this.sobrenome = pacienteDTO.getSobrenome();
         this.enderecoId = pacienteDTO.getEnderecoId();

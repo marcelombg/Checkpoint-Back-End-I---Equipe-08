@@ -1,7 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.repository;
 
-import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntitie;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,17 +11,17 @@ import java.util.Map;
 @Repository
 public class PacienteRepository {
 
-    private static Map<Integer, PacienteEntitie> pacienteMap = new HashMap<>();
+    private static Map<Integer, PacienteEntity> pacienteMap = new HashMap<>();
 
     private static int idPaciente = 1;
 
-    public PacienteEntitie registrar(PacienteEntitie pacienteEntitie) {
-        pacienteEntitie.setId(idPaciente++);
-        pacienteMap.put(pacienteEntitie.getId(), pacienteEntitie);
-        return pacienteEntitie;
+    public PacienteEntity registrar(PacienteEntity pacienteEntity) {
+        pacienteEntity.setId(idPaciente++);
+        pacienteMap.put(pacienteEntity.getId(), pacienteEntity);
+        return pacienteEntity;
     }
 
-    public PacienteEntitie buscarID(int id) {
+    public PacienteEntity buscarID(int id) {
         return pacienteMap.get(id);
     }
 
@@ -31,22 +30,22 @@ public class PacienteRepository {
         return "Paciente deletado";
     }
 
-    public PacienteEntitie modificar(PacienteEntitie pacienteEntitie){
-        pacienteMap.put(pacienteEntitie.getId(), pacienteEntitie);
-        return pacienteEntitie;
+    public PacienteEntity modificar(PacienteEntity pacienteEntity){
+        pacienteMap.put(pacienteEntity.getId(), pacienteEntity);
+        return pacienteEntity;
     }
 
-    public List<PacienteEntitie> buscarTodos(){
-        List<PacienteEntitie> pacienteEntitie = new ArrayList<>(pacienteMap.values());
-        return pacienteEntitie;
+    public List<PacienteEntity> buscarTodos(){
+        List<PacienteEntity> pacienteEntity = new ArrayList<>(pacienteMap.values());
+        return pacienteEntity;
 //        return new ArrayList<>(pacienteMap.values());
     }
 
     public int buscarNome(String name) {
-        for (PacienteEntitie pacienteEntitie : pacienteMap.values()) {
-            String nomeDentista = pacienteEntitie.getNome();
+        for (PacienteEntity pacienteEntity : pacienteMap.values()) {
+            String nomeDentista = pacienteEntity.getNome();
             if (nomeDentista.equalsIgnoreCase(name))
-                return pacienteEntitie.getId();
+                return pacienteEntity.getId();
         }
         return 0;
     }

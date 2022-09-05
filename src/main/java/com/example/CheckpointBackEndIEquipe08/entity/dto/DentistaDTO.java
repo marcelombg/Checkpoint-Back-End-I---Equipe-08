@@ -1,6 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
-import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntitie;
+import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -10,10 +10,10 @@ public class DentistaDTO {
     private String sobrenome;
     private Integer matriculaCadastro;
 
-    public DentistaDTO(DentistaEntitie dentistaEntitie) {
-        this.nome = dentistaEntitie.getNome();
-        this.sobrenome = dentistaEntitie.getSobrenome();
-        this.matriculaCadastro = dentistaEntitie.getMatriculaCadastro();
+    public DentistaDTO(DentistaEntity dentistaEntity) {
+        this.nome = dentistaEntity.getNome();
+        this.sobrenome = dentistaEntity.getSobrenome();
+        this.matriculaCadastro = dentistaEntity.getMatriculaCadastro();
     }
 
     public DentistaDTO() {
