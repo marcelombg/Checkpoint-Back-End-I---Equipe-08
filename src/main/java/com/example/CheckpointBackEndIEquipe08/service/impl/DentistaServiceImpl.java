@@ -19,8 +19,6 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     @Autowired
     private DentistaRepository dentistaRepository;
 
-    /*@Autowired
-    private PacienteServiceImpl pacienteService;*/
     @Override
     public DentistaDTO registrar(DentistaDTO dentistaDTO) {
         DentistaEntity dentistaEntity = mapperDTOToEntity(dentistaDTO);
@@ -32,13 +30,9 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     public DentistaDTO buscarID(int id) {
 
         DentistaEntity dentistaEntity = dentistaRepository.buscarId(id);
-        DentistaDTO dentistaDTO = mapperEntityToDTO(dentistaEntity);
-
-        /*String nomeDentista = buscarNome(dentistaEntitie);
-        dentistaDTO.setNome(nomeDentista);*/
 
         //productDTO.setCategory(categoryService.getById(productEntity.getCategoryId()).getName());
-        return dentistaDTO;
+        return mapperEntityToDTO(dentistaEntity);
 
 
     }
@@ -46,8 +40,7 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     private String buscarNome(DentistaEntity dentistaEntity) {
         int dentistaId = dentistaEntity.getId();
         DentistaDTO dentistaDTO = buscarID(dentistaId);
-        String dentistaNome = dentistaDTO.getNome();
-        return dentistaNome;
+        return dentistaDTO.getNome();
     }
     @Override
     public List<DentistaDTO> buscarTodos() {
@@ -85,32 +78,15 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
             dentistaRepository.registrar(dentistaEntity);
             return dentistaDTO;
         }
-        /*String nomeDentista = dentistaDTO.getNome();
-
-        int dentistaId = buscarNome(nomeDentista);
-
-        dentistaEntitie.setId(id);
-
-        if (dentistaEntitie.getId() != 0){
-            dentistaRepository.registrar(dentistaEntitie);
-            return dentistaDTO;
-        }
-        return null;*/
     }
-
-    /*public int buscarNome(String name) {
-        return dentistaRepository.buscarNome(name);
-    }*/
 
     private DentistaEntity mapperDTOToEntity(DentistaDTO dentistaDTO){
         ObjectMapper objectMapper = new ObjectMapper();
-        DentistaEntity dentistaEntity = objectMapper.convertValue(dentistaDTO, DentistaEntity.class);
-        return dentistaEntity;
+        return objectMapper.convertValue(dentistaDTO, DentistaEntity.class);
     }
 
     private DentistaDTO mapperEntityToDTO(DentistaEntity dentistaEntity){
         ObjectMapper objectMapper = new ObjectMapper();
-        DentistaDTO dentistaDTO = objectMapper.convertValue(dentistaEntity, DentistaDTO.class);
-        return dentistaDTO;
+        return objectMapper.convertValue(dentistaEntity, DentistaDTO.class);
     }
 }
