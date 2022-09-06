@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
+
+    private Integer id;
     private String nome;
     private String sobrenome;
     private Integer enderecoId;
@@ -13,6 +15,7 @@ public class PacienteDTO {
     private Date dataAlta;
 
     public PacienteDTO(PacienteEntity pacienteEntity) {
+        this.id = pacienteEntity.getId();
         this.nome = pacienteEntity.getNome();
         this.sobrenome = pacienteEntity.getSobrenome();
         this.enderecoId = pacienteEntity.getEnderecoId();
@@ -21,6 +24,14 @@ public class PacienteDTO {
     }
 
     public PacienteDTO() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {

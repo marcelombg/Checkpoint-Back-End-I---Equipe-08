@@ -2,7 +2,8 @@ package com.example.CheckpointBackEndIEquipe08.service.impl;
 
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
-import com.example.CheckpointBackEndIEquipe08.repository.PacienteRepository;
+import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
+import com.example.CheckpointBackEndIEquipe08.repository.PacienteRepository_DESATIVADA;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 //    private static Map<Integer, Paciente> usuarioMap = new HashMap<>();
 
     @Autowired
-    private PacienteRepository pacienteRepository;
+    private IPacienteRepository iPacienteRepository;
 
     /*@Autowired
     private DentistaServiceImpl dentistaService;*/
@@ -25,13 +26,14 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     @Override
     public PacienteDTO registrar(PacienteDTO pacienteDTO) {
         PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
-        pacienteRepository.registrar(pacienteEntity);
+        pacienteEntity = iPacienteRepository.save(pacienteEntity);
+        pacienteDTO = new PacienteDTO(pacienteEntity);
         return pacienteDTO;
     }
 
     @Override
     public PacienteDTO buscarID(int id) {
-        PacienteEntity pacienteEntity = pacienteRepository.buscarID(id);
+        PacienteEntity pacienteEntity = iPacienteRepository.findById(id).get();
         PacienteDTO pacienteDTO = mapperEntityToDTO(pacienteEntity);
 
         /*String nomePaciente = buscarNome(pacienteEntitie);
@@ -50,7 +52,7 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
     @Override
     public List<PacienteDTO> buscarTodos() {
-        List<PacienteEntity> pacienteEntities = pacienteRepository.buscarTodos();
+        List<PacienteEntity> pacienteEntities = iPacienteRepository.findAll();
         List<PacienteDTO> pacienteDTOS = new ArrayList<>();
 
         for (PacienteEntity paciente : pacienteEntities) {
@@ -64,7 +66,8 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
     @Override
     public String excluir(Integer id) {
-        pacienteRepository.excluir(id);
+//        iPacienteRepository.excluir(id);
+        iPacienteRepository.deleteById(id);
         return "Paciente removido";
     }
 
@@ -72,14 +75,18 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     public PacienteDTO modificar(PacienteDTO pacienteDTO, int id) {
         PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
 
-        if (pacienteRepository.buscarID(id) != null){
+//        if (iPacienteRepository.buscarID(id) != null){
+        if (iPacienteRepository.findById(id) != null){
 
-            pacienteEntity.setId(id);
-            pacienteRepository.modificar(pacienteEntity);
+
+                pacienteEntity.setId(id);
+//            iPacienteRepository.modificar(pacienteEntity);
+            iPacienteRepository.save(pacienteEntity);
             return pacienteDTO;
         }
         else {
-            pacienteRepository.registrar(pacienteEntity);
+//            iPacienteRepository.registrar(pacienteEntity);
+            iPacienteRepository.save(pacienteEntity);
             return pacienteDTO;
         }
 

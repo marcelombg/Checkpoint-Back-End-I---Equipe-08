@@ -2,15 +2,20 @@ package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 
+import javax.persistence.*;
 import java.util.Date;
 
-
+@Entity
+@Table(name = "Paciente")
 public class PacienteEntity {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true, nullable = false)
     private String nome;
     private String sobrenome;
+
     /*@JsonIgnore*/  // Vai ser usado qdo tiver o endereço
     private Integer enderecoId;
     private String RG;
@@ -20,6 +25,7 @@ public class PacienteEntity {
     }
 
     public PacienteEntity(PacienteDTO pacienteDTO) {
+        this.id = pacienteDTO.getId();
         this.nome = pacienteDTO.getNome();
         this.sobrenome = pacienteDTO.getSobrenome();
         this.enderecoId = pacienteDTO.getEnderecoId();

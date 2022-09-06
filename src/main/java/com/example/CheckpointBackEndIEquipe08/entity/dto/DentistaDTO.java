@@ -6,17 +6,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DentistaDTO {
 
+    private Integer id;
     private String nome;
     private String sobrenome;
     private Integer matriculaCadastro;
 
     public DentistaDTO(DentistaEntity dentistaEntity) {
+        this.id = dentistaEntity.getId();
         this.nome = dentistaEntity.getNome();
         this.sobrenome = dentistaEntity.getSobrenome();
         this.matriculaCadastro = dentistaEntity.getMatriculaCadastro();
     }
 
     public DentistaDTO() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

@@ -2,10 +2,17 @@ package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Dentista")
 public class DentistaEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(unique = true, nullable = false)
     private String nome;
     private String sobrenome;
     private Integer matriculaCadastro;
@@ -14,6 +21,7 @@ public class DentistaEntity {
     }
 
     public DentistaEntity(DentistaDTO dentistaDTO) {
+        this.id = dentistaDTO.getId();
         this.nome = dentistaDTO.getNome();
         this.sobrenome = dentistaDTO.getSobrenome();
         this.matriculaCadastro = dentistaDTO.getMatriculaCadastro();

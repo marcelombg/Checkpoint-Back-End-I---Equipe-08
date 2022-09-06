@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class PacienteRepository {
+public class PacienteRepository_DESATIVADA {
 
     private static Map<Integer, PacienteEntity> pacienteMap = new HashMap<>();
 
