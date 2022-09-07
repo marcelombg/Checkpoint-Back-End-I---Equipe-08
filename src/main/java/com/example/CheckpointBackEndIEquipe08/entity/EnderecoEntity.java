@@ -2,11 +2,12 @@ package com.example.CheckpointBackEndIEquipe08.entity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name = "Endereco")
 public class EnderecoEntity {
 
     @JsonIgnore

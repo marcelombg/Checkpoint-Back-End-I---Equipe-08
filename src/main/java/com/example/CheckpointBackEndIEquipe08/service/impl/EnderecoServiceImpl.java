@@ -1,5 +1,4 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
-
 import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IEnderecoRepository;
@@ -17,8 +16,8 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     @Autowired
     private IEnderecoRepository enderecoRepository;
 
-    @Autowired
-    private EnderecoServiceImpl enderecoService;
+//    @Autowired
+//    private EnderecoServiceImpl enderecoService;
 
     @Override
     public EnderecoDTO registrar(EnderecoDTO enderecoDTO) {

@@ -5,6 +5,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 
 public class EnderecoDTO {
 
+    private Integer id;
     private String rua;
     private Integer numero;
     private String cidade;
@@ -13,6 +14,7 @@ public class EnderecoDTO {
     private String CEP;
 
     public EnderecoDTO(EnderecoEntity enderecoEntity) {
+        this.id = enderecoEntity.getId();
         this.rua = enderecoEntity.getRua();
         this.numero = enderecoEntity.getNumero();
         this.cidade = enderecoEntity.getCidade();
@@ -70,5 +72,13 @@ public class EnderecoDTO {
 
     public void setCEP(String CEP) {
         this.CEP = CEP;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
