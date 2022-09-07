@@ -1,6 +1,8 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IEnderecoRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -96,4 +98,12 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     public boolean ifEnderecoExists (int id) {
         return enderecoRepository.existsById(id);
     }
+
+    public List<PacienteDTO> buscarEnderecoPorPaciente(int id) {
+        EnderecoEntity endereco = enderecoRepository.findById(id).get();
+        List<PacienteEntity> pacienteEntities = endereco.getPacienteEntities();
+
+        return null;
+    }
+
 }

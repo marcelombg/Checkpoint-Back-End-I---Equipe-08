@@ -41,8 +41,8 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
 
         if(enderecoService.ifEnderecoExists(idEndereco)){
             enderecoDTO = enderecoService.buscarID(idEndereco);
-            EnderecoEntity enderecoEntity = new EnderecoEntity(enderecoDTO);
-            pacienteEntity.setEndereco(enderecoEntity);
+            EnderecoEntity endereco = new EnderecoEntity(enderecoDTO);
+            pacienteEntity.setEndereco(endereco);
             pacienteEntity = iPacienteRepository.save(pacienteEntity);
         }
         pacienteDTO = mapperEntityToDTO(pacienteEntity);

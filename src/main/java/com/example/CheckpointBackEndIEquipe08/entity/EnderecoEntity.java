@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "Endereco")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EnderecoEntity {
 
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,6 +21,10 @@ public class EnderecoEntity {
     private String estado;
     private String pais;
     private String CEP;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "endereco", fetch = FetchType.LAZY, targetEntity = PacienteEntity.class)
+    private List<PacienteEntity> pacienteEntities = new ArrayList<>();
 
     public EnderecoEntity(EnderecoDTO enderecoDTO) {
         this.rua = rua;
@@ -87,5 +92,13 @@ public class EnderecoEntity {
 
     public void setCEP(String CEP) {
         this.CEP = CEP;
+    }
+
+    public List<PacienteEntity> getPacienteEntities() {
+        return pacienteEntities;
+    }
+
+    public void setPacienteEntities(List<PacienteEntity> pacienteEntities) {
+        this.pacienteEntities = pacienteEntities;
     }
 }
