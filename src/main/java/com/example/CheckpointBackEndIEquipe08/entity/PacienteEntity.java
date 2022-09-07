@@ -17,7 +17,9 @@ public class PacienteEntity {
     private String sobrenome;
 
     /*@JsonIgnore*/  // Vai ser usado qdo tiver o endereço
-    private Integer enderecoId;
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "endereco_id")
+    private EnderecoEntity endereco;
     private String RG;
     private Date dataAlta;
 
@@ -28,7 +30,7 @@ public class PacienteEntity {
         this.id = pacienteDTO.getId();
         this.nome = pacienteDTO.getNome();
         this.sobrenome = pacienteDTO.getSobrenome();
-        this.enderecoId = pacienteDTO.getEnderecoId();
+        this.endereco = pacienteDTO.getEndereco();
         this.RG = pacienteDTO.getRG();
         this.dataAlta = pacienteDTO.getDataAlta();
     }
@@ -57,12 +59,12 @@ public class PacienteEntity {
         this.sobrenome = sobrenome;
     }
 
-    public Integer getEnderecoId() {
-        return enderecoId;
+    public EnderecoEntity getEndereco() {
+        return endereco;
     }
 
-    public void setEnderecoId(Integer enderecoId) {
-        this.enderecoId = enderecoId;
+    public void setEndereco(EnderecoEntity endereco) {
+        this.endereco = endereco;
     }
 
     public String getRG() {

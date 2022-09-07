@@ -1,5 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
+import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -10,7 +11,7 @@ public class PacienteDTO {
     private Integer id;
     private String nome;
     private String sobrenome;
-    private Integer enderecoId;
+    private EnderecoEntity endereco;
     private String RG;
     private Date dataAlta;
 
@@ -18,7 +19,7 @@ public class PacienteDTO {
         this.id = pacienteEntity.getId();
         this.nome = pacienteEntity.getNome();
         this.sobrenome = pacienteEntity.getSobrenome();
-        this.enderecoId = pacienteEntity.getEnderecoId();
+        this.endereco = pacienteEntity.getEndereco();
         this.RG = pacienteEntity.getRG();
         this.dataAlta = pacienteEntity.getDataAlta();
     }
@@ -50,12 +51,12 @@ public class PacienteDTO {
         this.sobrenome = sobrenome;
     }
 
-    public Integer getEnderecoId() {
-        return enderecoId;
+    public EnderecoEntity getEndereco() {
+        return endereco;
     }
 
-    public void setEnderecoId(Integer enderecoId) {
-        this.enderecoId = enderecoId;
+    public void setEndereco(EnderecoEntity endereco) {
+        this.endereco = endereco;
     }
 
     public String getRG() {
