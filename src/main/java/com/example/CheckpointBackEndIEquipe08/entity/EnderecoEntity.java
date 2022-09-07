@@ -1,18 +1,12 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
-
-<<<<<<< HEAD
-public class EnderecoEntity {
-=======
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 public class EnderecoEntity {
 
     @JsonIgnore
@@ -93,5 +87,4 @@ public class EnderecoEntity {
     public void setCEP(String CEP) {
         this.CEP = CEP;
     }
->>>>>>> ff6d7f892488d2f376143a9438362a2586e3b012
 }
