@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IDentistaRepository extends JpaRepository<DentistaEntity, Integer> {
-    static long getDentistaId() {
-    }
+
 }

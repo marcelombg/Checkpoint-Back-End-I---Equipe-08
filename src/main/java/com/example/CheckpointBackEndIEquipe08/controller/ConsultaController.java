@@ -1,7 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
 
-import com.example.CheckpointBackEndIEquipe08.entity.RegistrarConsultaEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.example.CheckpointBackEndIEquipe08.service.impl.ConsultaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ public class ConsultaController {
     ConsultaServiceImpl consultaServiceImpl;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<ConsultaDTO> cadastrarConsulta(@RequestBody RegistrarConsultaEntity registrarConsultaEntity){
-        return ResponseEntity.status(HttpStatus.CREATED).body(consultaServiceImpl.salvarConsulta(registrarConsultaEntity));
+    public ResponseEntity<ConsultaDTO> cadastrarConsulta(@RequestBody ConsultaEntity consultaEntity){
+        return ResponseEntity.status(HttpStatus.CREATED).body(consultaServiceImpl.salvarConsulta(consultaEntity));
     }
 }
 

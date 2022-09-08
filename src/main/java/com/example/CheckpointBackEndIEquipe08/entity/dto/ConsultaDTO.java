@@ -5,12 +5,6 @@ import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-
 public class ConsultaDTO {
     private long id;
     private long dentistaId;
@@ -18,6 +12,46 @@ public class ConsultaDTO {
     private LocalDate data;
     private LocalTime hora;
 
-    public ConsultaDTO(ConsultaDTO consulta) {
+    public ConsultaDTO() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getDentistaId() {
+        return dentistaId;
+    }
+
+    public void setDentistaId(long dentistaId) {
+        this.dentistaId = dentistaId;
+    }
+
+    public long getPacienteId() {
+        return pacienteId;
+    }
+
+    public void setPacienteId(long pacienteId) {
+        this.pacienteId = pacienteId;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
     }
 }
