@@ -1,6 +1,8 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
+import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import com.example.CheckpointBackEndIEquipe08.repository.PacienteRepository_DESATIVADA;
@@ -20,14 +22,30 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     @Autowired
     private IPacienteRepository iPacienteRepository;
 
+    @Autowired
+    private EnderecoServiceImpl enderecoService;
+
     /*@Autowired
     private DentistaServiceImpl dentistaService;*/
 
     @Override
     public PacienteDTO registrar(PacienteDTO pacienteDTO) {
+//        PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
+//        pacienteEntity = iPacienteRepository.save(pacienteEntity);
+//        pacienteDTO = new PacienteDTO(pacienteEntity);
+//        return pacienteDTO;
+
         PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
-        pacienteEntity = iPacienteRepository.save(pacienteEntity);
-        pacienteDTO = new PacienteDTO(pacienteEntity);
+        EnderecoDTO enderecoDTO;
+        int idEndereco = pacienteEntity.getEndereco().getId();
+
+        if(enderecoService.ifEnderecoExists(idEndereco)){
+            enderecoDTO = enderecoService.buscarID(idEndereco);
+            EnderecoEntity endereco = new EnderecoEntity(enderecoDTO);
+            pacienteEntity.setEndereco(endereco);
+            pacienteEntity = iPacienteRepository.save(pacienteEntity);
+        }
+        pacienteDTO = mapperEntityToDTO(pacienteEntity);
         return pacienteDTO;
     }
 

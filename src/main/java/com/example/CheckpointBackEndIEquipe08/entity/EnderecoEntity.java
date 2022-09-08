@@ -2,14 +2,16 @@ package com.example.CheckpointBackEndIEquipe08.entity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "Endereco")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class EnderecoEntity {
 
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,6 +21,10 @@ public class EnderecoEntity {
     private String estado;
     private String pais;
     private String CEP;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "endereco", fetch = FetchType.LAZY, targetEntity = PacienteEntity.class)
+    private List<PacienteEntity> pacienteEntities = new ArrayList<>();
 
     public EnderecoEntity(EnderecoDTO enderecoDTO) {
         this.rua = rua;
@@ -86,5 +92,13 @@ public class EnderecoEntity {
 
     public void setCEP(String CEP) {
         this.CEP = CEP;
+    }
+
+    public List<PacienteEntity> getPacienteEntities() {
+        return pacienteEntities;
+    }
+
+    public void setPacienteEntities(List<PacienteEntity> pacienteEntities) {
+        this.pacienteEntities = pacienteEntities;
     }
 }
