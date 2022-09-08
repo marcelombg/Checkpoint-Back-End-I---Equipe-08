@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPacienteRepository extends JpaRepository<PacienteEntity, Integer> {
+    static long getPacienteId() {
+    }
 }
