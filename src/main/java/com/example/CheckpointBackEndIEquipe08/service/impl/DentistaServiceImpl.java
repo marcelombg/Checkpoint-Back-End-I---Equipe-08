@@ -2,7 +2,6 @@ package com.example.CheckpointBackEndIEquipe08.service.impl;
 
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
-import com.example.CheckpointBackEndIEquipe08.repository.DentistaRepository_DESATIVADA;
 import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -82,9 +81,7 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
             dentistaEntity.setId(id);
 //            iDentistaRepository.modificar(dentistaEntity);
             return dentistaDTO;
-        }
-
-        else{
+        } else {
 //            iDentistaRepository.registrar(dentistaEntity);
             iDentistaRepository.save(dentistaEntity);
             return dentistaDTO;

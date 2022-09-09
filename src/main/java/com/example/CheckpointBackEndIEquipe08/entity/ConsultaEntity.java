@@ -1,5 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
+import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -8,7 +9,6 @@ import java.time.LocalTime;
 
 @Entity
 @Table (name = "Consulta")
-@JsonIgnoreProperties()
 public class ConsultaEntity<Consulta> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +18,22 @@ public class ConsultaEntity<Consulta> {
     private LocalDate data;
     private LocalTime hora;
 
-   /* public RegistrarConsultaEntity (ConsultaDTO consultaDTO) {
-        this.idDentista = consultaDTO.getDentistaId();
-        this.idPaciente = consultaDTO.getPacienteId();
+   public ConsultaEntity (ConsultaDTO consultaDTO) {
+        this.idDentista = consultaDTO.getIdDentista();
+        this.idPaciente = consultaDTO.getIdPaciente();
         this.data = consultaDTO.getData();
         this.hora = consultaDTO.getHora();
-    }*/
+   }
 
     public ConsultaEntity() {
+    }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getIdDentista() {

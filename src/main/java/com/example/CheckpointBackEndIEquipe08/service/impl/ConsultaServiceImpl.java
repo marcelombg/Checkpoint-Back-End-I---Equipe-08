@@ -1,7 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
 import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,58 +10,63 @@ import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IConsultaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.DoubleStream;
 
+@Service
 public class ConsultaServiceImpl implements IService <ConsultaDTO> {
 
     @Autowired
     IConsultaRepository iConsultaRepository;
-
-    @Autowired
-    IDentistaRepository iDentistaRepository;
-
-    @Autowired
-     IPacienteRepository iPacienteRepository;
-
 
     @Override
     public ConsultaDTO registrar(ConsultaDTO consultaDTO) {
 
         ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
         consultaEntity = iConsultaRepository.save(consultaEntity);
-
+        consultaDTO = new ConsultaDTO(consultaEntity);
         return consultaDTO;
     }
 
     @Override
     public List<ConsultaDTO> buscarTodos() {
-        List <ConsultaEntity> consultaEntities = iConsultaRepository.findAll();
-        List <ConsultaDTO> consultaDTOS = new ArrayList<>();
+        List<ConsultaEntity> consultaEntities = iConsultaRepository.findAll();
+        List<ConsultaDTO> consultaDTOS = new ArrayList<>();
 
-        for (ConsultaEntity consultaEntity : consultaEntities) {
-            ConsultaDTO consultaDTO = mapper
+        for (ConsultaEntity consultaEntity : consultaEntities){
+            ConsultaDTO consultaDTO = mapperEntityToDTO(consultaEntity);
+            consultaDTOS.add(consultaDTO);
+        }
+        return consultaDTOS;
     }
-
 
     @Override
     public String excluir(Integer id) {
-        return null;
+        iConsultaRepository.deleteById(id);
+        return "Consulta removida";
     }
 
     @Override
     public ConsultaDTO modificar(ConsultaDTO consultaDTO, int id) {
-        return null;
+        ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
+
+        if(iConsultaRepository.findById(id) != null){
+            consultaEntity.setId(id);
+            return consultaDTO;
+        } else {
+            iConsultaRepository.save(consultaEntity);
+            return consultaDTO;
+        }
     }
 
     @Override
     public ConsultaDTO buscarID(int id) {
-        return null;
+        ConsultaEntity consultaEntity = iConsultaRepository.findById(id).get();
+        ConsultaDTO consultaDTO = mapperEntityToDTO(consultaEntity);
+        return consultaDTO;
     }
-
 
     private ConsultaEntity mapperDTOToEntity(ConsultaDTO consultaDTO){
         ObjectMapper objectMapper = new ObjectMapper();

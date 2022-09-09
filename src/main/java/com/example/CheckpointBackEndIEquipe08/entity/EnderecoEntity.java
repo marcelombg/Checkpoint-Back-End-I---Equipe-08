@@ -35,6 +35,9 @@ public class EnderecoEntity {
         this.CEP = CEP;
     }
 
+
+
+
     public EnderecoEntity() {
     }
 

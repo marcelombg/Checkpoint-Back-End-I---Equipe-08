@@ -1,42 +1,51 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
-import lombok.*;
-
+import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ConsultaDTO {
-    private long id;
-    private long dentistaId;
-    private long pacienteId;
+    private Integer id;
+    private Integer idDentista;
+    private Integer idPaciente;
     private LocalDate data;
     private LocalTime hora;
+
+    public ConsultaDTO(ConsultaEntity consultaEntity) {
+        this.id = consultaEntity.getId();
+        this.idDentista = consultaEntity.getIdDentista();
+        this.idPaciente = consultaEntity.getIdPaciente();
+        this.data = consultaEntity.getData();
+        this.hora = consultaEntity.getHora();
+    }
 
     public ConsultaDTO() {
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getDentistaId() {
-        return dentistaId;
+    public Integer getIdDentista() {
+        return idDentista;
     }
 
-    public void setDentistaId(long dentistaId) {
-        this.dentistaId = dentistaId;
+    public void setIdDentista(Integer idDentista) {
+        this.idDentista = idDentista;
     }
 
-    public long getPacienteId() {
-        return pacienteId;
+    public Integer getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setPacienteId(long pacienteId) {
-        this.pacienteId = pacienteId;
+    public void setIdPaciente(Integer idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public LocalDate getData() {
