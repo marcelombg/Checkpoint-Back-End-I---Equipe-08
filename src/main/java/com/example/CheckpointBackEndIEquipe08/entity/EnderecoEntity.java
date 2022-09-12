@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Endereco")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+/*@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})*/
 public class EnderecoEntity {
 
     @Id

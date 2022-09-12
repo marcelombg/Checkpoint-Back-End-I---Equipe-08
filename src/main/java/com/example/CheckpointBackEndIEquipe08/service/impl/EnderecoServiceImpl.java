@@ -25,7 +25,8 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     public EnderecoDTO registrar(EnderecoDTO enderecoDTO) {
         EnderecoEntity enderecoEntity = mapperDTOToEntity(enderecoDTO);
         enderecoEntity = enderecoRepository.save(enderecoEntity);
-        return enderecoDTO;
+        EnderecoDTO enderecoDTO1 = new EnderecoDTO(enderecoEntity);
+        return enderecoDTO1;
     }
 
     @Override

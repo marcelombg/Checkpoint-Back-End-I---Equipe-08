@@ -1,7 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,17 +12,21 @@ public class ConsultaEntity<Consulta> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer idDentista;
-    private Integer idPaciente;
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "dentista_id")
+    private DentistaEntity dentista;
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "paciente_id")
+    private PacienteEntity paciente;
     private LocalDate data;
     private LocalTime hora;
 
-   public ConsultaEntity (ConsultaDTO consultaDTO) {
-        this.idDentista = consultaDTO.getIdDentista();
-        this.idPaciente = consultaDTO.getIdPaciente();
+   /*public ConsultaEntity (ConsultaDTO consultaDTO) {
+        this.dentista = consultaDTO.getIdDentista();
+        this.paciente = consultaDTO.getIdPaciente();
         this.data = consultaDTO.getData();
         this.hora = consultaDTO.getHora();
-   }
+   }*/
 
     public ConsultaEntity() {
     }
@@ -36,20 +39,20 @@ public class ConsultaEntity<Consulta> {
         this.id = id;
     }
 
-    public Integer getIdDentista() {
-        return idDentista;
+    public DentistaEntity getDentista() {
+        return dentista;
     }
 
-    public void setIdDentista(Integer idDentista) {
-        this.idDentista = idDentista;
+    public void setDentista(DentistaEntity dentista) {
+        this.dentista = dentista;
     }
 
-    public Integer getIdPaciente() {
-        return idPaciente;
+    public PacienteEntity getPaciente() {
+        return paciente;
     }
 
-    public void setIdPaciente(Integer idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setPaciente(PacienteEntity paciente) {
+        this.paciente = paciente;
     }
 
     public LocalDate getData() {
