@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -14,9 +13,7 @@ import java.util.List;
 public class EnderecoController {
 
     @Autowired
-
     private EnderecoServiceImpl enderecoService;
-
     @PostMapping("/registrar")
     public ResponseEntity<EnderecoDTO> registrar(@RequestBody EnderecoDTO enderecoDTO) {
         ResponseEntity responseEntity = null;
@@ -48,7 +45,6 @@ public class EnderecoController {
     @GetMapping("/{id}")
     public ResponseEntity<EnderecoDTO> buscarID(@PathVariable int id) {
         ResponseEntity responseEntity = null;
-
         EnderecoDTO enderecoDTO = enderecoService.buscarID(id);
 
         if (enderecoDTO != null){
@@ -58,5 +54,4 @@ public class EnderecoController {
         }
         return responseEntity;
     }
-
 }

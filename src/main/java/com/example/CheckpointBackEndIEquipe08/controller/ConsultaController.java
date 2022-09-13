@@ -1,11 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
-
-import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.example.CheckpointBackEndIEquipe08.service.impl.ConsultaServiceImpl;
-import org.aspectj.weaver.ast.And;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,16 +26,11 @@ public class ConsultaController {
             }
             else {
                 responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
-
             }
         } else {
             responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
         }
         return responseEntity;
-
-
-
-        /*return ResponseEntity.status(HttpStatus.CREATED).body(consultaServiceImpl.registrar(consultaDTO));*/
     }
 
     @GetMapping("/buscar")
@@ -50,7 +41,6 @@ public class ConsultaController {
     @GetMapping("/{id}")
     public ResponseEntity<ConsultaDTO> buscarID(@PathVariable int id){
         ResponseEntity responseEntity =null;
-
         ConsultaDTO consultaDTO = consultaServiceImpl.buscarID(id);
 
         if (consultaDTO != null){

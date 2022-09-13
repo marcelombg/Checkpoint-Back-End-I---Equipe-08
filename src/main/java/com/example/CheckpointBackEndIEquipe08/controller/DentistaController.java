@@ -16,19 +16,8 @@ public class DentistaController {
     @Autowired
     private DentistaServiceImpl dentistaService;
 
-//    @GetMapping
-//    public Dentista salvar(
-//            @RequestParam(value = "id") Integer id,
-//            @RequestParam(value = "nome") String nome,
-//            @RequestParam(value = "sobrenome") String sobrenome,
-//            @RequestParam(value = "matriculaCadastro") Integer matriculaCadastro){
-//
-//        return dentistaService.registrar(new Dentista(nome, sobrenome, matriculaCadastro));
-//    }
-
     @PostMapping("/registrar")
     public ResponseEntity<DentistaDTO> registrar(@RequestBody DentistaDTO dentistaDTO) {
-
         ResponseEntity responseEntity = null;
 
         if (dentistaDTO.getNome() != null){
@@ -37,7 +26,6 @@ public class DentistaController {
         } else {
             responseEntity = new ResponseEntity<>("Nome não preenchido", HttpStatus.BAD_REQUEST);
         }
-
         return responseEntity;
     }
 
@@ -59,7 +47,6 @@ public class DentistaController {
     @GetMapping("/{id}")
     public ResponseEntity buscarID(@PathVariable int id) {
         ResponseEntity responseEntity = null;
-
         DentistaDTO dentistaDTO = dentistaService.buscarID(id);
 
         if (dentistaDTO != null){
@@ -69,7 +56,4 @@ public class DentistaController {
         }
         return responseEntity;
     }
-
-
-    //http://localhost:8082/dentista?id=1&nome=Marcelo&email=marcelo@email.com&numMatrícula=123456789&atendeConvenio=Sim
 }

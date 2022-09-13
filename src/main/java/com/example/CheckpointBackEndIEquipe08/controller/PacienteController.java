@@ -16,22 +16,6 @@ public class PacienteController {
     @Autowired
     private PacienteServiceImpl pacienteService;
 
-    //    @GetMapping
-//    public Paciente salvar(
-//            @RequestParam(value = "id") Integer id,
-//            @RequestParam(value = "nome") String nome,
-//            @RequestParam(value = "sobrenome") String sobrenome,
-//            @RequestParam(value = "endereçoId") Integer endereçoId,
-//            @RequestParam(value = "RG") String RG,
-//            @RequestParam(value = "dataAlta")Date dataAlta){
-//        return pacienteService.registrar(new Paciente(id, nome, sobrenome, endereçoId, RG, dataAlta));
-//    }
-
-//    @PostMapping
-//    public PacienteDTO registrar(@RequestBody PacienteDTO pacienteDTO) {
-//        return pacienteService.registrar(pacienteDTO);
-//    }
-
     @PostMapping("/registrar")
     public ResponseEntity<PacienteDTO> registrar(@RequestBody PacienteDTO pacienteDTO) {
         ResponseEntity responseEntity = null;
@@ -44,7 +28,6 @@ public class PacienteController {
         }
         return responseEntity;
     }
-
     @GetMapping("/buscar")
     public List<PacienteDTO> buscarTodos(){
         return pacienteService.buscarTodos();
@@ -60,14 +43,9 @@ public class PacienteController {
         return pacienteService.modificar(pacienteDTO, id);
     }
 
-//    @GetMapping("/{id}")
-//    public PacienteDTO buscarID(@PathVariable int id) {
-//        return pacienteService.buscarID(id);
-//    }
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDTO> buscarID(@PathVariable int id) {
         ResponseEntity responseEntity = null;
-
         PacienteDTO pacienteDTO = pacienteService.buscarID(id);
 
         if (pacienteDTO != null){
@@ -77,7 +55,4 @@ public class PacienteController {
         }
         return responseEntity;
     }
-
-    //http://localhost:8082/paciente?id=2&nome=Felipe&email=felipe@email.com&senha=123456789&nivelAcesso=Vip
-
 }

@@ -8,7 +8,6 @@ import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +16,6 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
 
     @Autowired
     private IEnderecoRepository enderecoRepository;
-
-//    @Autowired
-//    private EnderecoServiceImpl enderecoService;
 
     @Override
     public EnderecoDTO registrar(EnderecoDTO enderecoDTO) {
@@ -33,19 +29,8 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     public EnderecoDTO buscarID(int id) {
         EnderecoEntity enderecoEntity = enderecoRepository.findById(id).get();
         EnderecoDTO enderecoDTO = mapperEntityToDTO(enderecoEntity);
-
-//        String nomeRua = buscarRua(enderecoEntity);
-//        enderecoDTO.setRua(nomeRua);
-
         return enderecoDTO;
     }
-
-//    private String buscarRua(EnderecoEntity enderecoEntity) {
-//        int enderecoId = enderecoEntity.getId();
-//        EnderecoDTO enderecoDTO = enderecoService.buscarID(enderecoId);
-//        String ruaNome = enderecoDTO.getRua();
-//        return ruaNome;
-//    }
 
     @Override
     public List<EnderecoDTO> buscarTodos() {
@@ -53,9 +38,7 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
         List<EnderecoDTO> enderecoDTOS = new ArrayList<>();
 
         for (EnderecoEntity endereco : enderecoEntities) {
-//            String ruaEndereco = buscarRua(endereco);
             EnderecoDTO enderecoDTO = mapperEntityToDTO(endereco);
-//            enderecoDTO.setRua(ruaEndereco);
             enderecoDTOS.add(enderecoDTO);
         }
         return enderecoDTOS;
@@ -64,14 +47,13 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     @Override
     public String excluir(Integer id) {
         enderecoRepository.deleteById(id);
-        return "Endere~p removido";
+        return "Endereço removido";
     }
 
     @Override
     public EnderecoDTO modificar(EnderecoDTO enderecoDTO, int id) {
         EnderecoEntity enderecoEntity = mapperDTOToEntity(enderecoDTO);
         if (enderecoRepository.findById(id) != null) {
-
 
             enderecoEntity.setId(id);
             enderecoRepository.save(enderecoEntity);
@@ -81,8 +63,6 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
             return enderecoDTO;
         }
     }
-
-
 
     private EnderecoEntity mapperDTOToEntity(EnderecoDTO enderecoDTO){
         ObjectMapper objectMapper = new ObjectMapper();
@@ -103,7 +83,6 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     public List<PacienteDTO> buscarEnderecoPorPaciente(int id) {
         EnderecoEntity endereco = enderecoRepository.findById(id).get();
         List<PacienteEntity> pacienteEntities = endereco.getPacienteEntities();
-
         return null;
     }
 

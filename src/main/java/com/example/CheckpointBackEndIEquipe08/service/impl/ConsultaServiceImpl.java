@@ -1,9 +1,5 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
-import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
-import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
-import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
@@ -11,7 +7,6 @@ import com.example.CheckpointBackEndIEquipe08.repository.IConsultaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +18,6 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
 
     @Override
     public ConsultaDTO registrar(ConsultaDTO consultaDTO) {
-
         ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
         consultaEntity = iConsultaRepository.save(consultaEntity);
         consultaDTO = new ConsultaDTO(consultaEntity);
@@ -79,5 +73,4 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
         ConsultaDTO consultaDTO = objectMapper.convertValue(consultaEntity, ConsultaDTO.class);
         return consultaDTO;
     }
-
 }

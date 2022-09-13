@@ -7,20 +7,15 @@ import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DentistaServiceImpl implements IService<DentistaDTO> {
 
-//    private static Map<Integer, DentistaEntitie> dentistaMap = new HashMap<>();
-
     @Autowired
     private IDentistaRepository iDentistaRepository;
 
-    /*@Autowired
-    private PacienteServiceImpl pacienteService;*/
     @Override
     public DentistaDTO registrar(DentistaDTO dentistaDTO) {
         DentistaEntity dentistaEntity = mapperDTOToEntity(dentistaDTO);
@@ -31,14 +26,8 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
 
     @Override
     public DentistaDTO buscarID(int id) {
-
         DentistaEntity dentistaEntity = iDentistaRepository.findById(id).get();
         DentistaDTO dentistaDTO = mapperEntityToDTO(dentistaEntity);
-
-        /*String nomeDentista = buscarNome(dentistaEntitie);
-        dentistaDTO.setNome(nomeDentista);*/
-
-        //productDTO.setCategory(categoryService.getById(productEntity.getCategoryId()).getName());
         return dentistaDTO;
     }
 
@@ -50,23 +39,18 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     }
     @Override
     public List<DentistaDTO> buscarTodos() {
-//        List<DentistaEntity> dentistaEntities = iDentistaRepository.buscarTodos();
         List<DentistaEntity> dentistaEntities = iDentistaRepository.findAll();
         List<DentistaDTO> dentistaDTOS = new ArrayList<>();
 
         for (DentistaEntity dentistaEntity : dentistaEntities) {
-            /*String nomeDentista = buscarNome(dentistaEntitie);*/
             DentistaDTO dentistaDTO = mapperEntityToDTO(dentistaEntity);
-            /*dentistaDTO.setNome(nomeDentista);*/
             dentistaDTOS.add(dentistaDTO);
         }
         return dentistaDTOS;
-
     }
 
     @Override
     public String excluir(Integer id) {
-//        iDentistaRepository.excluir(id);
         iDentistaRepository.deleteById(id);
         return "Dentista removido";
     }
@@ -75,33 +59,15 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     public DentistaDTO modificar(DentistaDTO dentistaDTO, int id) {
         DentistaEntity dentistaEntity = mapperDTOToEntity(dentistaDTO);
 
-//        if(iDentistaRepository.buscarId(id) != null){
         if(iDentistaRepository.findById(id) != null){
 
             dentistaEntity.setId(id);
-//            iDentistaRepository.modificar(dentistaEntity);
             return dentistaDTO;
         } else {
-//            iDentistaRepository.registrar(dentistaEntity);
             iDentistaRepository.save(dentistaEntity);
             return dentistaDTO;
         }
-        /*String nomeDentista = dentistaDTO.getNome();
-
-        int dentistaId = buscarNome(nomeDentista);
-
-        dentistaEntitie.setId(id);
-
-        if (dentistaEntitie.getId() != 0){
-            dentistaRepository.registrar(dentistaEntitie);
-            return dentistaDTO;
-        }
-        return null;*/
     }
-
-    /*public int buscarNome(String name) {
-        return dentistaRepository.buscarNome(name);
-    }*/
 
     private DentistaEntity mapperDTOToEntity(DentistaDTO dentistaDTO){
         ObjectMapper objectMapper = new ObjectMapper();

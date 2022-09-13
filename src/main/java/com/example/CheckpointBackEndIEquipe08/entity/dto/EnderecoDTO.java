@@ -1,7 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
 import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 
 public class EnderecoDTO {
 

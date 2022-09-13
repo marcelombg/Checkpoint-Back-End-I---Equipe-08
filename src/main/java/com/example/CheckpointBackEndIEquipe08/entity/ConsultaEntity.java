@@ -1,7 +1,5 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
-import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,14 +18,6 @@ public class ConsultaEntity<Consulta> {
     private PacienteEntity paciente;
     private LocalDate data;
     private LocalTime hora;
-
-   /*public ConsultaEntity (ConsultaDTO consultaDTO) {
-        this.dentista = consultaDTO.getIdDentista();
-        this.paciente = consultaDTO.getIdPaciente();
-        this.data = consultaDTO.getData();
-        this.hora = consultaDTO.getHora();
-   }*/
-
     public ConsultaEntity() {
     }
 
