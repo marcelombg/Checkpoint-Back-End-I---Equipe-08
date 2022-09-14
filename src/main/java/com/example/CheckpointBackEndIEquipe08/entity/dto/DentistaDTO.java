@@ -3,7 +3,7 @@ package com.example.CheckpointBackEndIEquipe08.entity.dto;
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+/*@JsonIgnoreProperties(ignoreUnknown = true)*/
 public class DentistaDTO {
     private Integer id;
     private String nome;
