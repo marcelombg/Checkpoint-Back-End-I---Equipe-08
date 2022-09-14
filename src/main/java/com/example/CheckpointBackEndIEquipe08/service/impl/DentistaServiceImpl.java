@@ -1,7 +1,10 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,9 +21,12 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
 
     @Override
     public DentistaDTO registrar(DentistaDTO dentistaDTO) {
+
         DentistaEntity dentistaEntity = mapperDTOToEntity(dentistaDTO);
+
         dentistaEntity = iDentistaRepository.save(dentistaEntity);
-        dentistaDTO = new DentistaDTO(dentistaEntity);
+        dentistaDTO = mapperEntityToDTO(dentistaEntity);
+
         return dentistaDTO;
     }
 
@@ -31,12 +37,12 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         return dentistaDTO;
     }
 
-    private String buscarNome(DentistaEntity dentistaEntity) {
+    /*private String buscarNome(DentistaEntity dentistaEntity) {
         int dentistaId = dentistaEntity.getId();
         DentistaDTO dentistaDTO = buscarID(dentistaId);
         String dentistaNome = dentistaDTO.getNome();
         return dentistaNome;
-    }
+    }*/
     @Override
     public List<DentistaDTO> buscarTodos() {
         List<DentistaEntity> dentistaEntities = iDentistaRepository.findAll();
@@ -62,6 +68,7 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         if(iDentistaRepository.findById(id) != null){
 
             dentistaEntity.setId(id);
+            iDentistaRepository.save(dentistaEntity);
             return dentistaDTO;
         } else {
             iDentistaRepository.save(dentistaEntity);

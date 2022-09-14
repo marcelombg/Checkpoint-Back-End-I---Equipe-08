@@ -45,7 +45,7 @@ public class DentistaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity buscarID(@PathVariable int id) {
+    public ResponseEntity<DentistaDTO> buscarID(@PathVariable int id) {
         ResponseEntity responseEntity = null;
         DentistaDTO dentistaDTO = dentistaService.buscarID(id);
 
