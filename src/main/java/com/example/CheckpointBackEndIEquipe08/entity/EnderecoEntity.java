@@ -27,6 +27,7 @@ public class EnderecoEntity {
     private List<PacienteEntity> pacienteEntities = new ArrayList<>();
 
     public EnderecoEntity(EnderecoDTO enderecoDTO) {
+        this.id = enderecoDTO.getId();
         this.rua = enderecoDTO.getRua();
         this.numero = enderecoDTO.getNumero();
         this.cidade = enderecoDTO.getCidade();
