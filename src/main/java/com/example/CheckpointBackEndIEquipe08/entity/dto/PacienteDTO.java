@@ -5,24 +5,24 @@ import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
 
     private Integer id;
     private String nome;
     private String sobrenome;
-    private EnderecoEntity endereco;
+    private EnderecoDTO endereco;
     private String RG;
     private Date dataAlta;
 
-    public PacienteDTO(PacienteEntity pacienteEntity) {
-        this.id = pacienteEntity.getId();
-        this.nome = pacienteEntity.getNome();
-        this.sobrenome = pacienteEntity.getSobrenome();
-        this.endereco = pacienteEntity.getEndereco();
-        this.RG = pacienteEntity.getRG();
-        this.dataAlta = pacienteEntity.getDataAlta();
-    }
+//    public PacienteDTO(PacienteEntity pacienteEntity) {
+//        this.id = pacienteEntity.getId();
+//        this.nome = pacienteEntity.getNome();
+//        this.sobrenome = pacienteEntity.getSobrenome();
+//        this.endereco = pacienteEntity.getEndereco();
+//        this.RG = pacienteEntity.getRG();
+//        this.dataAlta = pacienteEntity.getDataAlta();
+//    }
 
     public PacienteDTO() {
     }
@@ -51,11 +51,11 @@ public class PacienteDTO {
         this.sobrenome = sobrenome;
     }
 
-    public EnderecoEntity getEndereco() {
+    public EnderecoDTO getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(EnderecoEntity endereco) {
+    public void setEndereco(EnderecoDTO endereco) {
         this.endereco = endereco;
     }
 

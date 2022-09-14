@@ -27,12 +27,13 @@ public class EnderecoEntity {
     private List<PacienteEntity> pacienteEntities = new ArrayList<>();
 
     public EnderecoEntity(EnderecoDTO enderecoDTO) {
-        this.rua = rua;
-        this.numero = numero;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.pais = pais;
-        this.CEP = CEP;
+        this.id = enderecoDTO.getId();
+        this.rua = enderecoDTO.getRua();
+        this.numero = enderecoDTO.getNumero();
+        this.cidade = enderecoDTO.getCidade();
+        this.estado = enderecoDTO.getEstado();
+        this.pais = enderecoDTO.getPais();
+        this.CEP = enderecoDTO.getCEP();
     }
 
     public EnderecoEntity() {
