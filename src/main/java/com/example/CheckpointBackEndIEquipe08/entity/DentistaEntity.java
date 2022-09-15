@@ -19,10 +19,10 @@ public class DentistaEntity {
     }
 
     public DentistaEntity(DentistaDTO dentistaDTO) {
-//        this.id = dentistaDTO.getId();
-//        this.nome = dentistaDTO.getNome();
-//        this.sobrenome = dentistaDTO.getSobrenome();
-//        this.matriculaCadastro = dentistaDTO.getMatriculaCadastro();
+        /*this.id = dentistaDTO.getId();*/
+        this.nome = dentistaDTO.getNome();
+        this.sobrenome = dentistaDTO.getSobrenome();
+        this.matriculaCadastro = dentistaDTO.getMatriculaCadastro();
     }
 
     public Integer getId() {

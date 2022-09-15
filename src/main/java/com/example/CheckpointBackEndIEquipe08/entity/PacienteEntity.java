@@ -27,12 +27,12 @@ public class PacienteEntity {
     }
 
     public PacienteEntity(PacienteDTO pacienteDTO) {
-//        this.id = pacienteDTO.getId();
-//        this.nome = pacienteDTO.getNome();
-//        this.sobrenome = pacienteDTO.getSobrenome();
-//        this.endereco = pacienteDTO.getEndereco();
-//        this.RG = pacienteDTO.getRG();
-//        this.dataAlta = pacienteDTO.getDataAlta();
+        this.id = pacienteDTO.getId();
+        this.nome = pacienteDTO.getNome();
+        this.sobrenome = pacienteDTO.getSobrenome();
+        /*this.endereco = pacienteDTO.getEndereco();*/
+        this.RG = pacienteDTO.getRG();
+        this.dataAlta = pacienteDTO.getDataAlta();
     }
 
     public Integer getId() {

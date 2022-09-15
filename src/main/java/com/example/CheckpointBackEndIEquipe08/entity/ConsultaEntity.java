@@ -17,6 +17,7 @@ public class ConsultaEntity<Consulta> {
     @JoinColumn(name = "paciente_id")
     private PacienteEntity paciente;
     private LocalDate data;
+    @Column(unique = true)
     private LocalTime hora;
     public ConsultaEntity() {
     }
