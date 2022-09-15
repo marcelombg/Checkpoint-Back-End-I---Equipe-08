@@ -2,6 +2,8 @@ package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.example.CheckpointBackEndIEquipe08.service.impl.ConsultaServiceImpl;
+import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
+import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,22 +17,30 @@ public class ConsultaController {
     @Autowired
     ConsultaServiceImpl consultaServiceImpl;
 
-    @PostMapping("/cadastrar")
-    public ResponseEntity<ConsultaDTO> registrar(@RequestBody ConsultaDTO consultaDTO){
-        ResponseEntity responseEntity = null;
+    @Autowired
+    DentistaServiceImpl dentistaService;
 
-        if (consultaDTO.getIdPaciente() != null){
-            if(consultaDTO.getIdDentista() != null){
-                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
-                responseEntity = new ResponseEntity<>(consultaDTO, HttpStatus.CREATED);
-            }
-            else {
-                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
-            }
-        } else {
-            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
-        }
-        return responseEntity;
+    @Autowired
+    PacienteServiceImpl pacienteService;
+
+    @PostMapping("/cadastrar")
+    public ConsultaDTO registrar(@RequestBody ConsultaDTO consultaDTO){
+        return consultaServiceImpl.registrar(consultaDTO);
+
+//        ResponseEntity responseEntity = null;
+//
+//        if (consultaDTO.getId() != null){
+//            if(consultaDTO.getId() != null){
+//                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
+//                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
+//            }
+//            else {
+//                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
+//            }
+//        } else {
+//            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
+//        }
+//        return responseEntity;
     }
 
     @GetMapping("/buscar")

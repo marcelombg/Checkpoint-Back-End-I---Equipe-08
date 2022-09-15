@@ -90,6 +90,7 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     public boolean ifPacienteExists (int id) {
         return iPacienteRepository.existsById(id);
     }
+
     private PacienteEntity mapperDTOToEntity(PacienteDTO pacienteDTO){
         ObjectMapper objectMapper = new ObjectMapper();
         PacienteEntity pacienteEntity = objectMapper.convertValue(pacienteDTO, PacienteEntity.class);
@@ -100,9 +101,5 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
         ObjectMapper objectMapper = new ObjectMapper();
         PacienteDTO pacienteDTO = objectMapper.convertValue(pacienteEntity, PacienteDTO.class);
         return pacienteDTO;
-    }
-
-    public boolean ifPacienteExists (int id) {
-        return iPacienteRepository.existsById(id);
     }
 }

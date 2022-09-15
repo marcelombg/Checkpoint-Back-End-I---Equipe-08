@@ -92,7 +92,4 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         return dentistaDTO;
     }
 
-    public boolean ifDentistaExists (int id) {
-        return iDentistaRepository.existsById(id);
-    }
 }

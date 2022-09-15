@@ -1,8 +1,11 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
+import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 @Table (name = "Consulta")
@@ -16,10 +19,18 @@ public class ConsultaEntity<Consulta> {
     @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id")
     private PacienteEntity paciente;
-    private LocalDate data;
+    private Date data;
     @Column(unique = true)
     private LocalTime hora;
     public ConsultaEntity() {
+    }
+
+    public ConsultaEntity(ConsultaDTO consultaDTO) {
+        this.id = consultaDTO.getId();
+//        this.dentista = consultaDTO.getIdDentista();
+//        this.paciente = consultaDTO.getIdPaciente();
+        this.data = consultaDTO.getData();
+        this.hora = consultaDTO.getHora();
     }
 
     public Integer getId() {
@@ -46,11 +57,11 @@ public class ConsultaEntity<Consulta> {
         this.paciente = paciente;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

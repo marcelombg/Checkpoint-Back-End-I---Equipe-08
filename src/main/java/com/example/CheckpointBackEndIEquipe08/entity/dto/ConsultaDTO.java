@@ -6,13 +6,14 @@ import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 /*@JsonIgnoreProperties(ignoreUnknown = true)*/
 public class ConsultaDTO {
     private Integer id;
     private DentistaDTO dentista;
     private PacienteDTO paciente;
-    private LocalDate data;
+    private Date data;
     private LocalTime hora;
 
     /*public ConsultaDTO(ConsultaEntity consultaEntity) {
@@ -50,11 +51,11 @@ public class ConsultaDTO {
         this.paciente = paciente;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

@@ -4,6 +4,9 @@ import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
+import com.example.CheckpointBackEndIEquipe08.repository.IEnderecoRepository;
+import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
@@ -25,28 +28,26 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
     @Autowired
     PacienteServiceImpl pacienteService;
 
+    @Autowired
+    private IPacienteRepository pacienteRepository;
+
+    @Autowired
+    private IDentistaRepository dentistaRepository;
 
     @Override
-    public ConsultaDTO registrar(ConsultaDTO consultaDTO) {
+    public ConsultaDTO registrar(ConsultaDTO consultaDTO, DentistaEntity dentistaEntity, PacienteEntity pacienteEntity, int id) {
         ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
-        PacienteDTO pacienteDTO;
-        DentistaDTO dentistaDTO;
-        int idDentista = consultaEntity.getDentista().getId();
-        int idPaciente = consultaEntity.getPaciente().getId();
+        consultaEntity = iConsultaRepository.save(consultaEntity);
+        DentistaEntity dentista = dentistaRepository.findById(id).get();
+        PacienteEntity paciente = pacienteRepository.findById(id).get();
 
+        if(dentistaService.ifDentistaExists(dentista.getId()) && pacienteService.ifPacienteExists(paciente.getId())){
 
-        if(dentistaService.ifDentistaExists(idDentista) && pacienteService.ifPacienteExists(idPaciente)){
-            dentistaDTO = dentistaService.buscarID(idDentista);
-            pacienteDTO = pacienteService.buscarID(idPaciente);
-
-
-            DentistaEntity dentistaEntity = new DentistaEntity(dentistaDTO);
-            PacienteEntity pacienteEntity = new PacienteEntity(pacienteDTO);
 
             consultaEntity.setDentista(dentistaEntity);
-            consultaEntity = iConsultaRepository.save(consultaEntity);
+            consultaEntity = iConsultaRepository.saveAndFlush(consultaEntity);
             consultaEntity.setPaciente(pacienteEntity);
-            consultaEntity = iConsultaRepository.save(consultaEntity);
+            consultaEntity = iConsultaRepository.saveAndFlush(consultaEntity);
         }
         consultaDTO = mapperEntityToDTO(consultaEntity);
         return consultaDTO;

@@ -15,14 +15,14 @@ public class PacienteDTO {
     private String RG;
     private Date dataAlta;
 
-//    public PacienteDTO(PacienteEntity pacienteEntity) {
-//        this.id = pacienteEntity.getId();
+    public PacienteDTO(PacienteEntity pacienteEntity) {
+        this.id = pacienteEntity.getId();
 //        this.nome = pacienteEntity.getNome();
 //        this.sobrenome = pacienteEntity.getSobrenome();
 //        this.endereco = pacienteEntity.getEndereco();
 //        this.RG = pacienteEntity.getRG();
 //        this.dataAlta = pacienteEntity.getDataAlta();
-//    }
+    }
 
     public PacienteDTO() {
     }
