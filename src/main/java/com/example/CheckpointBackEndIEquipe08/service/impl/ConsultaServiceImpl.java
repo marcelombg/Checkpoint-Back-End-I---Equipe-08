@@ -1,5 +1,9 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
+import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
@@ -16,13 +20,45 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
     @Autowired
     IConsultaRepository iConsultaRepository;
 
+    @Autowired
+    DentistaServiceImpl dentistaService;
+    @Autowired
+    PacienteServiceImpl pacienteService;
+
+
     @Override
+    public ConsultaDTO registrar(ConsultaDTO consultaDTO) {
+        ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
+        PacienteDTO pacienteDTO;
+        DentistaDTO dentistaDTO;
+        int idDentista = consultaEntity.getDentista().getId();
+        int idPaciente = consultaEntity.getPaciente().getId();
+
+
+        if(dentistaService.ifDentistaExists(idDentista) && pacienteService.ifPacienteExists(idPaciente)){
+            dentistaDTO = dentistaService.buscarID(idDentista);
+            pacienteDTO = pacienteService.buscarID(idPaciente);
+
+
+            DentistaEntity dentistaEntity = new DentistaEntity(dentistaDTO);
+            PacienteEntity pacienteEntity = new PacienteEntity(pacienteDTO);
+
+            consultaEntity.setDentista(dentistaEntity);
+            consultaEntity = iConsultaRepository.save(consultaEntity);
+            consultaEntity.setPaciente(pacienteEntity);
+            consultaEntity = iConsultaRepository.save(consultaEntity);
+        }
+        consultaDTO = mapperEntityToDTO(consultaEntity);
+        return consultaDTO;
+    }
+
+    /*@Override
     public ConsultaDTO registrar(ConsultaDTO consultaDTO) {
         ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
         consultaEntity = iConsultaRepository.save(consultaEntity);
         consultaDTO = new ConsultaDTO(consultaEntity);
         return consultaDTO;
-    }
+    }*/
 
     @Override
     public List<ConsultaDTO> buscarTodos() {

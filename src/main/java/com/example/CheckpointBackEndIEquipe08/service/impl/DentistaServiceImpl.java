@@ -76,6 +76,10 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         }
     }
 
+    public boolean ifDentistaExists (int id) {
+        return iDentistaRepository.existsById(id);
+    }
+
     private DentistaEntity mapperDTOToEntity(DentistaDTO dentistaDTO){
         ObjectMapper objectMapper = new ObjectMapper();
         DentistaEntity dentistaEntity = objectMapper.convertValue(dentistaDTO, DentistaEntity.class);

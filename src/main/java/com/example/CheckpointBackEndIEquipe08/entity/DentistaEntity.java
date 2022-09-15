@@ -18,12 +18,12 @@ public class DentistaEntity {
     public DentistaEntity() {
     }
 
-    /*public DentistaEntity(DentistaDTO dentistaDTO) {
-        this.id = dentistaDTO.getId();
+    public DentistaEntity(DentistaDTO dentistaDTO) {
+        /*this.id = dentistaDTO.getId();*/
         this.nome = dentistaDTO.getNome();
         this.sobrenome = dentistaDTO.getSobrenome();
         this.matriculaCadastro = dentistaDTO.getMatriculaCadastro();
-    }*/
+    }
 
     public Integer getId() {
         return id;
