@@ -2,16 +2,15 @@ package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
 @Table (name = "Consulta")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ConsultaEntity<Consulta> {
+public class ConsultaEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -23,13 +22,14 @@ public class ConsultaEntity<Consulta> {
     private PacienteEntity paciente;
     private Date data;
     private LocalTime hora;
+
     public ConsultaEntity() {
     }
 
     public ConsultaEntity(ConsultaDTO consultaDTO) {
         this.id = consultaDTO.getId();
-//        this.dentista = consultaDTO.getIdDentista();
-//        this.paciente = consultaDTO.getIdPaciente();
+        this.dentista = consultaDTO.getDentista();
+        this.paciente = consultaDTO.getPaciente();
         this.data = consultaDTO.getData();
         this.hora = consultaDTO.getHora();
     }

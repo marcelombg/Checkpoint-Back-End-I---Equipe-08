@@ -1,10 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.service.impl;
 
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,13 +18,10 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
 
     @Override
     public DentistaDTO registrar(DentistaDTO dentistaDTO) {
-
         DentistaEntity dentistaEntity = mapperDTOToEntity(dentistaDTO);
-
         dentistaEntity = iDentistaRepository.save(dentistaEntity);
-        dentistaDTO = mapperEntityToDTO(dentistaEntity);
-
-        return dentistaDTO;
+        DentistaDTO dentistaDTO1 = new DentistaDTO(dentistaEntity);
+        return dentistaDTO1;
     }
 
     @Override
@@ -82,14 +76,14 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
 
     private DentistaEntity mapperDTOToEntity(DentistaDTO dentistaDTO){
         ObjectMapper objectMapper = new ObjectMapper();
-        DentistaEntity dentistaEntity = objectMapper.convertValue(dentistaDTO, DentistaEntity.class);
-        return dentistaEntity;
+        DentistaEntity dentista = objectMapper.convertValue(dentistaDTO, DentistaEntity.class);
+        return dentista;
     }
 
     private DentistaDTO mapperEntityToDTO(DentistaEntity dentistaEntity){
         ObjectMapper objectMapper = new ObjectMapper();
-        DentistaDTO dentistaDTO = objectMapper.convertValue(dentistaEntity, DentistaDTO.class);
-        return dentistaDTO;
+        DentistaDTO dentista = objectMapper.convertValue(dentistaEntity, DentistaDTO.class);
+        return dentista;
     }
 
 }

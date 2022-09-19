@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EnderecoDTO {
-
     private Integer id;
     private String rua;
     private Integer numero;
