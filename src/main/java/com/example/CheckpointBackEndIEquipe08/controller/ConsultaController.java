@@ -24,23 +24,21 @@ public class ConsultaController {
     PacienteServiceImpl pacienteService;
 
     @PostMapping("/cadastrar")
-    public ConsultaDTO registrar(@RequestBody ConsultaDTO consultaDTO){
-        return consultaServiceImpl.registrar(consultaDTO);
+    public ResponseEntity registrar(@RequestBody ConsultaDTO consultaDTO){
+        ResponseEntity responseEntity = null;
 
-//        ResponseEntity responseEntity = null;
-//
-//        if (consultaDTO.getId() != null){
-//            if(consultaDTO.getId() != null){
-//                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
-//                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
-//            }
-//            else {
-//                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
-//            }
-//        } else {
-//            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
-//        }
-//        return responseEntity;
+        if (consultaDTO.getDentista().getId() != null){
+            if(consultaDTO.getPaciente().getId() != null){
+                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
+                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
+            }
+            else {
+                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
+            }
+        } else {
+            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
     }
 
     @GetMapping("/buscar")

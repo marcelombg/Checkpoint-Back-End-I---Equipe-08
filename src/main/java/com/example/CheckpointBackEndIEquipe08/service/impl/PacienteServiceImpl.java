@@ -43,7 +43,6 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     public PacienteDTO buscarID(int id) {
         PacienteEntity pacienteEntity = iPacienteRepository.findById(id).get();
         PacienteDTO pacienteDTO = mapperEntityToDTO(pacienteEntity);
-
         return pacienteDTO;
     }
 

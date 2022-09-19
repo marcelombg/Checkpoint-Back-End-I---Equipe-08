@@ -1,7 +1,9 @@
 package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
 import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EnderecoDTO {
 
     private Integer id;

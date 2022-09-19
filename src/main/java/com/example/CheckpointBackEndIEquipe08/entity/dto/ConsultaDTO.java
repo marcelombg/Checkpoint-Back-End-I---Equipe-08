@@ -11,18 +11,18 @@ import java.util.Date;
 /*@JsonIgnoreProperties(ignoreUnknown = true)*/
 public class ConsultaDTO {
     private Integer id;
-    private DentistaDTO dentista;
-    private PacienteDTO paciente;
+    private DentistaEntity dentista;
+    private PacienteEntity paciente;
     private Date data;
     private LocalTime hora;
 
-    /*public ConsultaDTO(ConsultaEntity consultaEntity) {
+    public ConsultaDTO(ConsultaEntity consultaEntity) {
         this.id = consultaEntity.getId();
         this.dentista = consultaEntity.getDentista();
         this.paciente = consultaEntity.getPaciente();
         this.data = consultaEntity.getData();
         this.hora = consultaEntity.getHora();
-    }*/
+    }
 
     public ConsultaDTO() {
     }
@@ -35,19 +35,19 @@ public class ConsultaDTO {
         this.id = id;
     }
 
-    public DentistaDTO getIdDentista() {
+    public DentistaEntity getDentista() {
         return dentista;
     }
 
-    public void setIdDentista(DentistaDTO dentista) {
+    public void setDentista(DentistaEntity dentista) {
         this.dentista = dentista;
     }
 
-    public PacienteDTO getIdPaciente() {
+    public PacienteEntity getPaciente() {
         return paciente;
     }
 
-    public void setIdPaciente(PacienteDTO paciente) {
+    public void setPaciente(PacienteEntity paciente) {
         this.paciente = paciente;
     }
 

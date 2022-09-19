@@ -1,6 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,18 +10,18 @@ import java.util.Date;
 
 @Entity
 @Table (name = "Consulta")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ConsultaEntity<Consulta> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, targetEntity = DentistaEntity.class)
     @JoinColumn(name = "dentista_id")
     private DentistaEntity dentista;
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, targetEntity = PacienteEntity.class)
     @JoinColumn(name = "paciente_id")
     private PacienteEntity paciente;
     private Date data;
-    @Column(unique = true)
     private LocalTime hora;
     public ConsultaEntity() {
     }

@@ -1,12 +1,14 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "Paciente")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PacienteEntity {
 
     @Id
@@ -15,8 +17,6 @@ public class PacienteEntity {
     @Column(unique = true, nullable = false)
     private String nome;
     private String sobrenome;
-
-    /*@JsonIgnore*/  // Vai ser usado qdo tiver o endereço
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private EnderecoEntity endereco;
@@ -30,7 +30,7 @@ public class PacienteEntity {
         this.id = pacienteDTO.getId();
         this.nome = pacienteDTO.getNome();
         this.sobrenome = pacienteDTO.getSobrenome();
-        /*this.endereco = pacienteDTO.getEndereco();*/
+        this.endereco = pacienteDTO.getEndereco();
         this.RG = pacienteDTO.getRG();
         this.dataAlta = pacienteDTO.getDataAlta();
     }
