@@ -31,12 +31,6 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         return dentistaDTO;
     }
 
-    /*private String buscarNome(DentistaEntity dentistaEntity) {
-        int dentistaId = dentistaEntity.getId();
-        DentistaDTO dentistaDTO = buscarID(dentistaId);
-        String dentistaNome = dentistaDTO.getNome();
-        return dentistaNome;
-    }*/
     @Override
     public List<DentistaDTO> buscarTodos() {
         List<DentistaEntity> dentistaEntities = iDentistaRepository.findAll();
@@ -60,7 +54,6 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         DentistaEntity dentistaEntity = mapperDTOToEntity(dentistaDTO);
 
         if(iDentistaRepository.findById(id) != null){
-
             dentistaEntity.setId(id);
             iDentistaRepository.save(dentistaEntity);
             return dentistaDTO;
@@ -85,5 +78,4 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
         DentistaDTO dentista = objectMapper.convertValue(dentistaEntity, DentistaDTO.class);
         return dentista;
     }
-
 }

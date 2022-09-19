@@ -54,7 +54,6 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     public EnderecoDTO modificar(EnderecoDTO enderecoDTO, int id) {
         EnderecoEntity enderecoEntity = mapperDTOToEntity(enderecoDTO);
         if (enderecoRepository.findById(id) != null) {
-
             enderecoEntity.setId(id);
             enderecoRepository.save(enderecoEntity);
             return enderecoDTO;
@@ -70,14 +69,14 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
         return endereco;
     }
 
+    public boolean ifEnderecoExists (int id) {
+        return enderecoRepository.existsById(id);
+    }
+
     private EnderecoDTO mapperEntityToDTO(EnderecoEntity enderecoEntity){
         ObjectMapper objectMapper = new ObjectMapper();
         EnderecoDTO endereco = objectMapper.convertValue(enderecoEntity, EnderecoDTO.class);
         return endereco;
-    }
-
-    public boolean ifEnderecoExists (int id) {
-        return enderecoRepository.existsById(id);
     }
 
     public List<PacienteDTO> buscarEnderecoPorPaciente(int id) {
@@ -85,5 +84,4 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
         List<PacienteEntity> pacienteEntities = endereco.getPacienteEntities();
         return null;
     }
-
 }

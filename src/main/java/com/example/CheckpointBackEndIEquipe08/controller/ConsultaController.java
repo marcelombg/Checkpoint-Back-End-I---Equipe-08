@@ -27,8 +27,8 @@ public class ConsultaController {
     public ResponseEntity registrar(@RequestBody ConsultaDTO consultaDTO){
         ResponseEntity responseEntity = null;
 
-        if (consultaDTO.getDentista().getId() != null){
-            if(consultaDTO.getPaciente().getId() != null){
+        if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){
+            if(consultaDTO.getPaciente().getId() !=null && consultaDTO.getPaciente().getId() !=0){
                 ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
                 responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
             }

@@ -3,8 +3,8 @@ package com.example.CheckpointBackEndIEquipe08.entity.dto;
 import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.Date;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
 
