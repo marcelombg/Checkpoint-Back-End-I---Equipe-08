@@ -24,7 +24,7 @@ public class ConsultaController {
     PacienteServiceImpl pacienteService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity registrar(@RequestBody ConsultaDTO consultaDTO){
+    public ResponseEntity<ConsultaDTO> registrar(@RequestBody ConsultaDTO consultaDTO){
         ResponseEntity responseEntity = null;
 
         if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){
@@ -61,7 +61,7 @@ public class ConsultaController {
 
     @PutMapping("/{id}")
     public ConsultaDTO modificar(@RequestBody ConsultaDTO consultaDTO,@PathVariable int id){
-        return consultaServiceImpl.modificar(consultaDTO,id);
+        return consultaServiceImpl.modificar(consultaDTO, id);
     }
 
     @DeleteMapping("/{id}")

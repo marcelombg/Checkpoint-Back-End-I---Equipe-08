@@ -67,9 +67,9 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
     @Override
     public ConsultaDTO modificar(ConsultaDTO consultaDTO, int id) {
         ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
-
         if(iConsultaRepository.findById(id) != null){
             consultaEntity.setId(id);
+            iConsultaRepository.save(consultaEntity);
             return consultaDTO;
         } else {
             iConsultaRepository.save(consultaEntity);
