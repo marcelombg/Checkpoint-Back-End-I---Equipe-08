@@ -1,5 +1,5 @@
 package com.example.CheckpointBackEndIEquipe08;
-
+import com.example.CheckpointBackEndIEquipe08.controller.DentistaController;
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import org.aspectj.lang.annotation.Before;
@@ -10,9 +10,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class CheckpointBackEndIEquipe08ApplicationTests {
-    DentistaDTO dentista1 = new DentistaDTO("Dumith","Habib",12345);
+
+    DentistaDTO dentista1 = new DentistaDTO(new DentistaEntity());
+
+    @Autowired
+    DentistaController dentistaController;
 
     @Test
-    void testenome(){
-        Assert.assertEquals("Dumith", dentista1.getNome());}
+    void name() {
+
+        //assertEquals(Boolean,dentistaController.buscarTodos().isEmpty());
+
+    }
+
+    @Test
+    void testeDumith(){
+        assertTrue(dentistaController.buscarTodos().isEmpty());
+
+    }
+
+
+    @Test
+    void testenome2(){
+//        assertEquals(dentistaController.buscarTodos().isEmpty());
+    }
 }
+
