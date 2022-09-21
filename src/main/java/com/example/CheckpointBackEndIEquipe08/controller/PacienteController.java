@@ -1,6 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ public class PacienteController {
     private PacienteServiceImpl pacienteService;
 
     @PostMapping("/registrar")
-    public ResponseEntity<PacienteDTO> registrar(@RequestBody PacienteDTO pacienteDTO) {
+    public ResponseEntity<PacienteDTO> registrar(@RequestBody PacienteDTO pacienteDTO) throws NotFoundException {
         ResponseEntity responseEntity = null;
 
         if (pacienteDTO.getNome() != null){
