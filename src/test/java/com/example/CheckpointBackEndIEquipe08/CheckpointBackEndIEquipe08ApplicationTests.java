@@ -15,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.util.DateUtil.now;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CheckpointBackEndIEquipe08ApplicationTests {
@@ -34,8 +33,14 @@ class CheckpointBackEndIEquipe08ApplicationTests {
 
 
     @Test
-    void testeDumith() {
+    void testeBuscarTodosVazio() {
         assertTrue(dentistaController.buscarTodos().isEmpty());
+    }
+    @Test
+    void testeId() {
+        assertEquals(1, dentista.getId());
+        assertEquals(2, paciente.getId());
+        assertNotEquals(1, paciente.getId());
     }
 
 
