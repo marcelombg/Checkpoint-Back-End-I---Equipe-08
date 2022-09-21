@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class CheckpointBackEndIEquipe08ApplicationTests {
 
     DentistaDTO dentista = new DentistaDTO(1,"Ricardo", "Brito", 12345678);
-    PacienteDTO paciente = new PacienteDTO(2,"Marcelo", "Garofalo", 87654321);
+    PacienteDTO paciente = new PacienteDTO(2,"Marcelo", "Garofalo", EnderecoEntity.getId(), "32145678", 20220502);
     EnderecoDTO endereco = new EnderecoDTO(3,"Gralhas", 34, "SP", "SP", "Brasil", "31234-213");
 
 
