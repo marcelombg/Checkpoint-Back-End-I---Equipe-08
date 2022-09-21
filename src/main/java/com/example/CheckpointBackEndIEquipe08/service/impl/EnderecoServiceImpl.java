@@ -3,6 +3,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.repository.IEnderecoRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,8 +27,8 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
     }
 
     @Override
-    public EnderecoDTO buscarID(int id) {
-        EnderecoEntity enderecoEntity = enderecoRepository.findById(id).get();
+    public EnderecoDTO buscarID(int id) throws NotFoundException {
+        EnderecoEntity enderecoEntity = enderecoRepository.findById(id).orElseThrow(() -> new NotFoundException("Endereço não encontrado com o id: " + id));
         EnderecoDTO enderecoDTO = mapperEntityToDTO(enderecoEntity);
         return enderecoDTO;
     }
