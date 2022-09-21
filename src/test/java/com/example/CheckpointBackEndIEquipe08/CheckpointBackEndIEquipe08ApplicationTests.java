@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.util.DateUtil.now;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,8 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class CheckpointBackEndIEquipe08ApplicationTests {
 
     DentistaDTO dentista = new DentistaDTO(1,"Ricardo", "Brito", 12345678);
-    PacienteDTO paciente = new PacienteDTO(2,"Marcelo", "Garofalo", EnderecoEntity.getId(), "32145678", 20220502);
-    EnderecoDTO endereco = new EnderecoDTO(3,"Gralhas", 34, "SP", "SP", "Brasil", "31234-213");
+    EnderecoDTO enderecoDTO = new EnderecoDTO(3,"Gralhas", 34, "SP", "SP", "Brasil", "31234-213");
+    EnderecoEntity endereco = new EnderecoEntity();
+    PacienteDTO paciente = new PacienteDTO(2,"Marcelo", "Garofalo",  endereco, "32145678", now());
 
 
     @Autowired
