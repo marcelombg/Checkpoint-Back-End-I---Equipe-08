@@ -7,36 +7,26 @@ import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@WebMvcTest(DentistaController.class)
 class CheckpointBackEndIEquipe08ApplicationTests {
 
-    DentistaDTO dentista1 = new DentistaDTO(new DentistaEntity());
-
     @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
     DentistaController dentistaController;
 
     @Test
-    void name() {
-
-        //assertEquals(Boolean,dentistaController.buscarTodos().isEmpty());
-
-    }
-
-    @Test
-    void testeDumith(){
-        assertTrue(dentistaController.buscarTodos().isEmpty());
-
-    }
-
-
-    @Test
-    void testenome2(){
-//        assertEquals(dentistaController.buscarTodos().isEmpty());
+    void testeDumith() throws Exception {
+//        this.mockMvc.perform(get("/buscar").queryParam("howMany","1")).andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
 
