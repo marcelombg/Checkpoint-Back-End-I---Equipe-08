@@ -4,6 +4,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +24,7 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     private EnderecoServiceImpl enderecoService;
 
     @Override
-    public PacienteDTO registrar(PacienteDTO pacienteDTO) {
+    public PacienteDTO registrar(PacienteDTO pacienteDTO) throws NotFoundException {
 
         PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
         EnderecoDTO enderecoDTO;

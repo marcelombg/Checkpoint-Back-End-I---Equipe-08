@@ -20,6 +20,13 @@ public class DentistaDTO {
     public DentistaDTO() {
     }
 
+    public DentistaDTO(Integer id, String nome, String sobrenome, Integer matriculaCadastro) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.matriculaCadastro = matriculaCadastro;
+    }
+
     public Integer getId() {
         return id;
     }

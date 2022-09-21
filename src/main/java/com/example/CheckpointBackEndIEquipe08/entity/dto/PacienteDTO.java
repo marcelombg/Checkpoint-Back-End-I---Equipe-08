@@ -24,6 +24,15 @@ public class PacienteDTO {
         this.dataAlta = pacienteEntity.getDataAlta();
     }
 
+    public PacienteDTO(Integer id, String nome, String sobrenome, EnderecoEntity endereco, String RG, Date dataAlta) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.endereco = endereco;
+        this.RG = RG;
+        this.dataAlta = dataAlta;
+    }
+
     public PacienteDTO() {
     }
 

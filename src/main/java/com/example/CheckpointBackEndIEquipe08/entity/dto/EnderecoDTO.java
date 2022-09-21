@@ -23,6 +23,16 @@ public class EnderecoDTO {
         this.CEP = enderecoEntity.getCEP();
     }
 
+    public EnderecoDTO(Integer id, String rua, Integer numero, String cidade, String estado, String pais, String CEP) {
+        this.id = id;
+        this.rua = rua;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.CEP = CEP;
+    }
+
     public EnderecoDTO() {
     }
 
