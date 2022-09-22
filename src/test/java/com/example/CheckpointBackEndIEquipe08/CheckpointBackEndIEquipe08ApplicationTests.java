@@ -1,41 +1,32 @@
 package com.example.CheckpointBackEndIEquipe08;
 import com.example.CheckpointBackEndIEquipe08.controller.DentistaController;
-import com.example.CheckpointBackEndIEquipe08.controller.EnderecoController;
-import com.example.CheckpointBackEndIEquipe08.controller.PacienteController;
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@WebMvcTest(DentistaController.class)
 class CheckpointBackEndIEquipe08ApplicationTests {
 
-    DentistaDTO dentista = new DentistaDTO(1,"Ricardo", "Brito", 12345678);
-    PacienteDTO paciente = new PacienteDTO(2,"Marcelo", "Garofalo", 87654321);
-    EnderecoDTO endereco = new EnderecoDTO(3,"Gralhas", 34, "SP", "SP", "Brasil", "31234-213");
-
-
     @Autowired
-    DentistaController dentistaController;
-    PacienteController pacienteController;
-    EnderecoController enderecoController;
+    private MockMvc mockMvc;
 
+    @MockBean
+    DentistaController dentistaController;
 
     @Test
-    void testeDumith() {
-        assertTrue(dentistaController.buscarTodos().isEmpty());
+    void testeDumith() throws Exception {
+//        this.mockMvc.perform(get("/buscar").queryParam("howMany","1")).andExpect(MockMvcResultMatchers.status().isOk());
     }
-
-
 }
 
