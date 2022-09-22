@@ -69,4 +69,7 @@ public class EnderecoController {
 //    }
         return new ResponseEntity<>(enderecoService.buscarID(id), HttpStatus.OK);
     }
+
+
+
 }
