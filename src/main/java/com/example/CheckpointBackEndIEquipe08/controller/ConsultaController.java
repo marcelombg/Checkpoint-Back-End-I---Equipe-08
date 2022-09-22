@@ -1,6 +1,7 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.service.impl.ConsultaServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
@@ -24,7 +25,7 @@ public class ConsultaController {
     PacienteServiceImpl pacienteService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<ConsultaDTO> registrar(@RequestBody ConsultaDTO consultaDTO){
+    public ResponseEntity<ConsultaDTO> registrar(@RequestBody ConsultaDTO consultaDTO) throws NotFoundException {
         ResponseEntity responseEntity = null;
 
         if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){

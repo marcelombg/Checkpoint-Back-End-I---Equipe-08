@@ -4,6 +4,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
@@ -25,7 +26,7 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
     PacienteServiceImpl pacienteService;
 
     @Override
-    public ConsultaDTO registrar(ConsultaDTO consultaDTO) {
+    public ConsultaDTO registrar(ConsultaDTO consultaDTO) throws NotFoundException {
         ConsultaEntity consultaEntity = mapperDTOToEntity(consultaDTO);
 
         DentistaDTO dentistaDTO;

@@ -41,13 +41,13 @@ public class PacienteServiceImpl implements IService<PacienteDTO> {
     }
 
     @Override
-    public PacienteDTO buscarID(int id) {
-        PacienteEntity pacienteEntity = iPacienteRepository.findById(id).get();
+    public PacienteDTO buscarID(int id) throws NotFoundException {
+        PacienteEntity pacienteEntity = iPacienteRepository.findById(id).orElseThrow(() -> new NotFoundException("Paciente não encontrado com o id: " + id));
         PacienteDTO pacienteDTO = mapperEntityToDTO(pacienteEntity);
         return pacienteDTO;
     }
 
-    private String buscarNome(PacienteEntity pacienteEntity) {
+    private String buscarNome(PacienteEntity pacienteEntity) throws NotFoundException {
         int pacienteId = pacienteEntity.getId();
         PacienteDTO pacienteDTO = buscarID(pacienteId);
         String pacienteNome = pacienteDTO.getNome();
