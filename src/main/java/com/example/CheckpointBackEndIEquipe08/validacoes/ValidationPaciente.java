@@ -6,6 +6,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.exception.VariableNullException;
 import com.example.CheckpointBackEndIEquipe08.repository.IEnderecoRepository;
+import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import com.example.CheckpointBackEndIEquipe08.service.impl.EnderecoServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,11 +17,14 @@ import java.util.List;
 
 public class ValidationPaciente {
 
-//    @Autowired
-//    EnderecoServiceImpl enderecoService;
-//
+    @Autowired
+    EnderecoServiceImpl enderecoService;
+
     @Autowired
     PacienteServiceImpl pacienteService;
+
+    @Autowired
+    IEnderecoRepository enderecoRepository;
 //
 //    @Autowired
 //    private IEnderecoRepository enderecoRepository;
@@ -48,28 +52,26 @@ public class ValidationPaciente {
             variables.add("Endereço");
         }
 
-
 //        PacienteEntity pacienteEntity = mapperDTOToEntity(pacienteDTO);
 //        EnderecoDTO enderecoDTO;
 //        int idEndereco = pacienteDTO.getEndereco().getId();
 
-        int contador=0;
-
-        if (pacienteDTO.getEndereco().getId()!=0) {
-            List<PacienteDTO> listaEnderecoId = pacienteService.buscarTodos();
-
-            for ( PacienteDTO pacienteDTO1 : listaEnderecoId ) {
-                if(pacienteDTO1.getEndereco().getId()==pacienteDTO.getEndereco().getId()) {
-                    contador++;
-//                    variables.add("Endereço não encontrado");
-                }
-            }
-
-            if(contador==0) {
-                variables.add("Endereço não encontrado");
-            }
-        }
-
+//        int contador=0;
+//
+//        if (pacienteDTO.getEndereco().getId()!=0) {
+//            List<PacienteDTO> listaEnderecoId = pacienteService.buscarTodos();
+//
+//            for ( PacienteDTO pacienteDTO1 : listaEnderecoId ) {
+//                if(pacienteDTO1.getEndereco().getId()==pacienteDTO.getEndereco().getId()) {
+//                    contador++;
+////                    variables.add("Endereço não encontrado");
+//                }
+//            }
+//
+//            if(contador==0) {
+//                variables.add("Endereço não encontrado");
+//            }
+//        }
 
 //        if(!enderecoService.ifEnderecoExists(pacienteDTO.getEndereco().getId())) {
 //            variables.add("Endereço não encontrado");
@@ -82,7 +84,6 @@ public class ValidationPaciente {
         if(!variables.isEmpty()) {
             throw new VariableNullException("Verifique as variáveis listadas: ", variables);
         }
-
         return true;
     }
 }
