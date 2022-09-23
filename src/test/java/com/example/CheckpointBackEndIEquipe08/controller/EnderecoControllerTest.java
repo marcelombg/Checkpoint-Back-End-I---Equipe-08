@@ -2,11 +2,13 @@ package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -30,7 +32,7 @@ class EnderecoControllerTest {
     @Autowired
     private WebApplicationContext context;
 
-    @BeforeAll
+    @BeforeEach
     void init(){
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
                 .apply(springSecurity())
@@ -38,11 +40,17 @@ class EnderecoControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void saveEndereco() throws Exception {
         EnderecoDTO enderecoDTO = new EnderecoDTO();
-        enderecoDTO.setRua("Rua das Andorinhas");
+        enderecoDTO.setRua("Rua teste 1");
+        enderecoDTO.setNumero(1);
+        enderecoDTO.setCidade("Cidade teste 1");
+        enderecoDTO.setEstado("Estado teste 1");
+        enderecoDTO.setPais("Pais teste 1");
+        enderecoDTO.setCEP("CEP teste 1");
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/endereco/save")
+        mockMvc.perform(MockMvcRequestBuilders.post("/endereco/registrar")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(asJsonString(enderecoDTO)))
