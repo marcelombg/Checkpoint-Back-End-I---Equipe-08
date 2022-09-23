@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -15,6 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
+import static com.example.CheckpointBackEndIEquipe08.utils.Utils.objectFromString;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringBootTest
@@ -35,14 +39,25 @@ class DentistaControllerTest {
     }
 
     @Test
-    void create() throws Exception{
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN_ROLES")
+    void registrar() throws Exception{
         DentistaDTO dentistaDTO = new DentistaDTO();
+        dentistaDTO.setNome("Nome teste 1");
+        dentistaDTO.setSobrenome("Sobrenome teste 1");
+        dentistaDTO.setMatriculaCadastro(123456);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dentistaDTO)))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isCreated());
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        assertNotNull(dentistaDTO.getId());
     }
 }

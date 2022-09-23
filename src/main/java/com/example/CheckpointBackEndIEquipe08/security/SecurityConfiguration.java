@@ -27,14 +27,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/user").permitAll()
-                .antMatchers("/paciente/registrar").permitAll()
-                .antMatchers("/endereco/registrar").permitAll()
-                .antMatchers("/consulta","/endereco","/dentista","/paciente").hasAnyRole("ADMIN")
+                .antMatchers("/dentista").hasAnyRole("ADMIN")
+                .antMatchers("/dentista/registrar").hasAnyRole("ADMIN")
+                .antMatchers("/consulta").hasAnyRole("ADMIN")
+                .antMatchers("/endereco").hasAnyRole("ADMIN")
+                .antMatchers("/paciente").hasAnyRole("ADMIN")
                 .antMatchers("/consulta/cadastrar").hasAnyRole("PACIENTE")
                 .antMatchers("/endereco/").hasAnyRole("PACIENTE","ADMIN")
                 .anyRequest()
                 .authenticated().and()
-                //.formLogin();
+//                .formLogin();
                 .httpBasic();
     }
 
