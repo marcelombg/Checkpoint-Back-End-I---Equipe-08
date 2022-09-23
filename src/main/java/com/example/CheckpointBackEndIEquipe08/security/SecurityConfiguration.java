@@ -26,10 +26,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/user").permitAll()
-                .antMatchers("/dentista").hasAnyRole("ADMIN")
-                .antMatchers("/dentista/registrar").hasAnyRole("ADMIN")
-                .antMatchers("/consulta").hasAnyRole("ADMIN")
+                .antMatchers("/user","/user/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/dentista").hasAnyRole("ADMIN","PACIENTE","DENTISTA_ROLES")
+                .antMatchers(HttpMethod.GET,"/dentista/registrar").hasAnyRole("ADMIN")
+                .antMatchers("/consulta","/consulta**").hasAnyRole("ADMIN")
                 .antMatchers("/endereco").hasAnyRole("ADMIN")
                 .antMatchers("/paciente").hasAnyRole("ADMIN")
                 .antMatchers("/consulta/cadastrar").hasAnyRole("PACIENTE")

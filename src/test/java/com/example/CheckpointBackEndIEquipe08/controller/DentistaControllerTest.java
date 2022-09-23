@@ -39,14 +39,14 @@ class DentistaControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN_ROLES")
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void registrar() throws Exception{
         DentistaDTO dentistaDTO = new DentistaDTO();
         dentistaDTO.setNome("Nome teste 1");
         dentistaDTO.setSobrenome("Sobrenome teste 1");
         dentistaDTO.setMatriculaCadastro(123456);
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista")
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(asJsonString(dentistaDTO)))
