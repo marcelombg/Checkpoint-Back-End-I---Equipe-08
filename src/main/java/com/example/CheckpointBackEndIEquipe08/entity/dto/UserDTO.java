@@ -24,13 +24,13 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(UserEntity userEntity) {
+    /*public UserDTO(UserEntity userEntity) {
         this.name = userEntity.getName();
         this.username = userEntity.getUsername();
         this.email = userEntity.getEmail();
         this.password = userEntity.getPassword();
         this.userRoles = userEntity.getUserRoles();
-    }
+    }*/
 
     public String getName() {
         return name;
