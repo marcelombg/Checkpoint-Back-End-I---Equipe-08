@@ -1,10 +1,13 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Dentista")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DentistaEntity {
 
     @Id

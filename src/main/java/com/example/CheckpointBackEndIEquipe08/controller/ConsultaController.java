@@ -37,7 +37,7 @@ public class ConsultaController {
         if (!pacienteService.ifPacienteExists(consultaDTO.getPaciente().getId())) {
             responseEntity = new ResponseEntity<>("ID de paciente inválido.", HttpStatus.BAD_REQUEST);
         } else {
-            if (dentistaService.ifDentistaExists(consultaDTO.getDentista().getId())) {
+            if (!dentistaService.ifDentistaExists(consultaDTO.getDentista().getId())) {
                 responseEntity = new ResponseEntity<>("ID de dentista inválido.", HttpStatus.BAD_REQUEST);
             } else {
                 if (erro) {
@@ -47,22 +47,6 @@ public class ConsultaController {
             }
         }
 
-//        if (erro) {
-//            ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
-//            responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
-//        }
-
-//        if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){
-//            if(consultaDTO.getPaciente().getId() !=null && consultaDTO.getPaciente().getId() !=0){
-//                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
-//                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
-//            }
-//            else {
-//                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
-//            }
-//        } else {
-//            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
-//        }
         return responseEntity;
     }
 
@@ -73,16 +57,7 @@ public class ConsultaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ConsultaDTO> buscarID(@PathVariable int id) throws NotFoundException {
-//        ResponseEntity responseEntity =null;
-//        ConsultaDTO consultaDTO = consultaServiceImpl.buscarID(id);
-//
-//        if (consultaDTO != null){
-//            responseEntity = new ResponseEntity<>(consultaDTO, HttpStatus.OK);
-//        } else {
-//            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
-//        }
-//        return responseEntity;
-        return new ResponseEntity<>(consultaServiceImpl.buscarID(id), HttpStatus.OK);
+        return new ResponseEntity<>(consultaServiceImpl.buscarID(id), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

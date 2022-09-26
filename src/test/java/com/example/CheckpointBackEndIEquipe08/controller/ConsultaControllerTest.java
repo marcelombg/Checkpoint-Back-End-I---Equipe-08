@@ -137,7 +137,7 @@ class ConsultaControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .content(asJsonString(consultaDTO)))
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn();
 
         String responseBody = mvcResult.getResponse().getContentAsString();

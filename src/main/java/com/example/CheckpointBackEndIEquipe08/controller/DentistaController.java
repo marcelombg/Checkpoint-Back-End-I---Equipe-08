@@ -31,9 +31,6 @@ public class DentistaController {
             DentistaDTO dentistaDTO1 = dentistaService.registrar(dentistaDTO);
             responseEntity = new ResponseEntity<>(dentistaDTO1, HttpStatus.OK);
         }
-//        } else {
-//            responseEntity = new ResponseEntity<>("Nome não preenchido", HttpStatus.BAD_REQUEST);
-//        }
         return responseEntity;
     }
 
@@ -54,15 +51,6 @@ public class DentistaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DentistaDTO> buscarID(@PathVariable int id) throws NotFoundException {
-//        ResponseEntity responseEntity = null;
-//        DentistaDTO dentistaDTO = dentistaService.buscarID(id);
-//
-//        if (dentistaDTO != null){
-//            responseEntity = new ResponseEntity<>(dentistaDTO, HttpStatus.OK);
-//        } else {
-//            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
-//        }
-
         return new ResponseEntity<>(dentistaService.buscarID(id), HttpStatus.OK);
     }
 }

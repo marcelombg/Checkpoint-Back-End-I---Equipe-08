@@ -27,7 +27,7 @@ class UserControllerTest {
         userDTO.setUsername("Teste");
         userDTO.setEmail("teste@teste.com");
         userDTO.setPassword("123456");
-        userDTO.setUserRoles(UserRoles.ADMIN_ROLES);
+        userDTO.setUserRoles(UserRoles.ROLE_ADMIN);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
