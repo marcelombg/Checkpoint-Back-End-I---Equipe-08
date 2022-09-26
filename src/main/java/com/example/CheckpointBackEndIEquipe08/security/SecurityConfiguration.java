@@ -37,14 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/endereco/**","/paciente/**","/consulta/**","/dentista/**").hasAnyRole("ADMIN")
                 .antMatchers(HttpMethod.POST,"/endereco/registrar","/paciente/registrar").hasAnyRole("PACIENTE")
                 .antMatchers(HttpMethod.POST,"/dentista/registrar").hasAnyRole("DENTISTA")
-                .antMatchers(HttpMethod.GET,"/endereco/{id}","/consulta/{id}").hasAnyRole("PACIENTE")
+                .antMatchers(HttpMethod.GET,"/endereco/{id}","/consulta/{id}", "/paciente/{id}").hasAnyRole("PACIENTE")
                 .antMatchers(HttpMethod.GET,"/dentista/{id}","/consulta/{id}").hasAnyRole("DENTISTA")
                 .antMatchers(HttpMethod.PUT,"/endereco/{id}","/paciente/{id}").hasAnyRole("PACIENTE")
                 .antMatchers(HttpMethod.PUT,"/dentista/{id}").hasAnyRole("DENTISTA")
                 .anyRequest()
                 .authenticated().and()
-                //.formLogin();
-                //.httpBasic();
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
