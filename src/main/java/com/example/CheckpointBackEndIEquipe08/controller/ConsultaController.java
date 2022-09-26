@@ -2,9 +2,11 @@ package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
+import com.example.CheckpointBackEndIEquipe08.exception.VariableNullException;
 import com.example.CheckpointBackEndIEquipe08.service.impl.ConsultaServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
+import com.example.CheckpointBackEndIEquipe08.validacoes.ValidationConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,21 +26,43 @@ public class ConsultaController {
     @Autowired
     PacienteServiceImpl pacienteService;
 
+    private ValidationConsulta validationConsulta = new ValidationConsulta();
+
     @PostMapping("/cadastrar")
-    public ResponseEntity<ConsultaDTO> registrar(@RequestBody ConsultaDTO consultaDTO) throws NotFoundException {
+    public ResponseEntity<ConsultaDTO> registrar(@RequestBody ConsultaDTO consultaDTO) throws NotFoundException, VariableNullException {
         ResponseEntity responseEntity = null;
 
-        if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){
-            if(consultaDTO.getPaciente().getId() !=null && consultaDTO.getPaciente().getId() !=0){
-                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
-                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
-            }
-            else {
-                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
-            }
+        Boolean erro = validationConsulta.validationConsultaVariables(consultaDTO);
+
+        if (!pacienteService.ifPacienteExists(consultaDTO.getPaciente().getId())) {
+            responseEntity = new ResponseEntity<>("ID de paciente inválido.", HttpStatus.BAD_REQUEST);
         } else {
-            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
+            if (dentistaService.ifDentistaExists(consultaDTO.getDentista().getId())) {
+                responseEntity = new ResponseEntity<>("ID de dentista inválido.", HttpStatus.BAD_REQUEST);
+            } else {
+                if (erro) {
+                    ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
+                    responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
+                }
+            }
         }
+
+//        if (erro) {
+//            ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
+//            responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
+//        }
+
+//        if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){
+//            if(consultaDTO.getPaciente().getId() !=null && consultaDTO.getPaciente().getId() !=0){
+//                ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
+//                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
+//            }
+//            else {
+//                responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);
+//            }
+//        } else {
+//            responseEntity = new ResponseEntity<>("ID do Paciente não encontrado", HttpStatus.NOT_FOUND);
+//        }
         return responseEntity;
     }
 
@@ -48,16 +72,17 @@ public class ConsultaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ConsultaDTO> buscarID(@PathVariable int id){
-        ResponseEntity responseEntity =null;
-        ConsultaDTO consultaDTO = consultaServiceImpl.buscarID(id);
-
-        if (consultaDTO != null){
-            responseEntity = new ResponseEntity<>(consultaDTO, HttpStatus.OK);
-        } else {
-            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
-        }
-        return responseEntity;
+    public ResponseEntity<ConsultaDTO> buscarID(@PathVariable int id) throws NotFoundException {
+//        ResponseEntity responseEntity =null;
+//        ConsultaDTO consultaDTO = consultaServiceImpl.buscarID(id);
+//
+//        if (consultaDTO != null){
+//            responseEntity = new ResponseEntity<>(consultaDTO, HttpStatus.OK);
+//        } else {
+//            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
+//        }
+//        return responseEntity;
+        return new ResponseEntity<>(consultaServiceImpl.buscarID(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

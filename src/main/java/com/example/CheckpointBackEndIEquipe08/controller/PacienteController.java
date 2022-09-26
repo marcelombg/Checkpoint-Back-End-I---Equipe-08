@@ -1,8 +1,10 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
+import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.exception.VariableNullException;
+import com.example.CheckpointBackEndIEquipe08.service.impl.EnderecoServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.validacoes.ValidationPaciente;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +22,23 @@ public class PacienteController {
 
     private ValidationPaciente validationPaciente = new ValidationPaciente();
 
+    @Autowired
+    private EnderecoServiceImpl enderecoService;
+
     @PostMapping("/registrar")
     public ResponseEntity<PacienteDTO> registrar(@RequestBody PacienteDTO pacienteDTO) throws NotFoundException, VariableNullException {
         ResponseEntity responseEntity = null;
 
         Boolean erro = validationPaciente.validationPacienteVariables(pacienteDTO);
 
-
-        if (pacienteDTO.getNome() != null){
-            PacienteDTO pacienteDTO1 = pacienteService.registrar(pacienteDTO);
-            responseEntity = new ResponseEntity<>(pacienteDTO1, HttpStatus.OK);
-        } else {
-            responseEntity = new ResponseEntity<>("Nome não preenchido", HttpStatus.BAD_REQUEST);
+        if (!enderecoService.ifEnderecoExists(pacienteDTO.getEndereco().getId())) {
+            responseEntity = new ResponseEntity<>("ID de endereço inválido.", HttpStatus.BAD_REQUEST);
+        }
+        else {
+            if (erro) {
+                PacienteDTO pacienteDTO1 = pacienteService.registrar(pacienteDTO);
+                responseEntity = new ResponseEntity<>(pacienteDTO1, HttpStatus.OK);
+            }
         }
         return responseEntity;
     }

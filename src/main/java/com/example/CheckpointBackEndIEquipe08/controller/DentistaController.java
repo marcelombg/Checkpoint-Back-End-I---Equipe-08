@@ -1,7 +1,10 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
+import com.example.CheckpointBackEndIEquipe08.exception.VariableNullException;
 import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
+import com.example.CheckpointBackEndIEquipe08.validacoes.ValidationDentista;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +18,22 @@ public class DentistaController {
     @Autowired
     private DentistaServiceImpl dentistaService;
 
+    ValidationDentista validationDentista = new ValidationDentista();
+
     @PostMapping("/registrar")
-    public ResponseEntity<DentistaDTO> registrar(@RequestBody DentistaDTO dentistaDTO) {
+    public ResponseEntity<DentistaDTO> registrar(@RequestBody DentistaDTO dentistaDTO) throws VariableNullException {
         ResponseEntity responseEntity = null;
 
-        if (dentistaDTO.getNome() != null){
+        Boolean erro = validationDentista.validationDentistaVariables(dentistaDTO);
+
+
+        if (erro) {
             DentistaDTO dentistaDTO1 = dentistaService.registrar(dentistaDTO);
             responseEntity = new ResponseEntity<>(dentistaDTO1, HttpStatus.OK);
-        } else {
-            responseEntity = new ResponseEntity<>("Nome não preenchido", HttpStatus.BAD_REQUEST);
         }
+//        } else {
+//            responseEntity = new ResponseEntity<>("Nome não preenchido", HttpStatus.BAD_REQUEST);
+//        }
         return responseEntity;
     }
 
@@ -44,15 +53,16 @@ public class DentistaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DentistaDTO> buscarID(@PathVariable int id) {
-        ResponseEntity responseEntity = null;
-        DentistaDTO dentistaDTO = dentistaService.buscarID(id);
+    public ResponseEntity<DentistaDTO> buscarID(@PathVariable int id) throws NotFoundException {
+//        ResponseEntity responseEntity = null;
+//        DentistaDTO dentistaDTO = dentistaService.buscarID(id);
+//
+//        if (dentistaDTO != null){
+//            responseEntity = new ResponseEntity<>(dentistaDTO, HttpStatus.OK);
+//        } else {
+//            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
+//        }
 
-        if (dentistaDTO != null){
-            responseEntity = new ResponseEntity<>(dentistaDTO, HttpStatus.OK);
-        } else {
-            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
-        }
-        return responseEntity;
+        return new ResponseEntity<>(dentistaService.buscarID(id), HttpStatus.OK);
     }
 }
