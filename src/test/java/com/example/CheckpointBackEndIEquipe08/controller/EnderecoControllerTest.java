@@ -47,12 +47,12 @@ class EnderecoControllerTest {
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void registrar() throws Exception {
         EnderecoDTO enderecoDTO = new EnderecoDTO();
-        enderecoDTO.setRua("Rua teste 1");
+        enderecoDTO.setRua("Endereço teste 1");
         enderecoDTO.setNumero(1);
-        enderecoDTO.setCidade("Cidade teste 1");
-        enderecoDTO.setEstado("Estado teste 1");
-        enderecoDTO.setPais("Pais teste 1");
-        enderecoDTO.setCEP("CEP teste 1");
+        enderecoDTO.setCidade("Endereço teste 1");
+        enderecoDTO.setEstado("Endereço teste 1");
+        enderecoDTO.setPais("Endereço teste 1");
+        enderecoDTO.setCEP("11111-111");
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/endereco/registrar")
                         .contentType(MediaType.APPLICATION_JSON)

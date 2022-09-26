@@ -4,6 +4,8 @@ import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -14,7 +16,7 @@ public class ConsultaDTO {
     private DentistaEntity dentista;
     private PacienteEntity paciente;
     private Date data;
-    private LocalTime hora;
+    private Time hora;
 
     public ConsultaDTO(ConsultaEntity consultaEntity) {
         this.id = consultaEntity.getId();
@@ -59,11 +61,11 @@ public class ConsultaDTO {
         this.data = data;
     }
 
-    public LocalTime getHora() {
+    public Time getHora() {
         return hora;
     }
 
-    public void setHora(LocalTime hora) {
+    public void setHora(Time hora) {
         this.hora = hora;
     }
 }

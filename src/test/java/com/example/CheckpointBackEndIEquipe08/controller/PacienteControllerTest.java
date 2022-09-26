@@ -72,11 +72,11 @@ class PacienteControllerTest {
         EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"A",1, "A", "A", "A", "A"));
 
         PacienteDTO pacienteDTO = new PacienteDTO();
-        pacienteDTO.setNome("Paciente nome teste");
-        pacienteDTO.setSobrenome("Paciente Sobrenome teste");
+        pacienteDTO.setNome("Paciente teste 1");
+        pacienteDTO.setSobrenome("Paciente teste 1");
         pacienteDTO.setEndereco(endereco);
         pacienteDTO.setDataAlta(Date.from(Instant.now()));
-        pacienteDTO.setRG("12345654");
+        pacienteDTO.setRG("11111111-1");
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/paciente/registrar")
                     .contentType(MediaType.APPLICATION_JSON)

@@ -43,8 +43,8 @@ class DentistaControllerTest {
     void registrar() throws Exception{
         DentistaDTO dentistaDTO = new DentistaDTO();
 
-        dentistaDTO.setNome("Nome teste 1");
-        dentistaDTO.setSobrenome("Sobrenome teste 1");
+        dentistaDTO.setNome("Dentista teste 1");
+        dentistaDTO.setSobrenome("Dentista teste 1");
         dentistaDTO.setMatriculaCadastro(123456);
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")

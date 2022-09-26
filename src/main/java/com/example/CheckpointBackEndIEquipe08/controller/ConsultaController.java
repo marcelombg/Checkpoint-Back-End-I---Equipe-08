@@ -31,7 +31,7 @@ public class ConsultaController {
         if (consultaDTO.getDentista().getId() !=null && consultaDTO.getDentista().getId() !=0){
             if(consultaDTO.getPaciente().getId() !=null && consultaDTO.getPaciente().getId() !=0){
                 ConsultaDTO consultaDTO1 = consultaServiceImpl.registrar(consultaDTO);
-                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.CREATED);
+                responseEntity = new ResponseEntity<>(consultaDTO1, HttpStatus.OK);
             }
             else {
                 responseEntity = new ResponseEntity<>("ID do Dentista não encontrado", HttpStatus.NOT_FOUND);

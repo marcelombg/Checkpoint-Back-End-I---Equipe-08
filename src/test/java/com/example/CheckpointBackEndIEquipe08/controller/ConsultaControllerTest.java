@@ -23,7 +23,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
@@ -50,7 +52,7 @@ class ConsultaControllerTest {
 
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
-    void registrarEndereco() throws Exception {
+    void registrar1() throws Exception {
         EnderecoDTO enderecoDTO = new EnderecoDTO();
         enderecoDTO.setRua("Rua teste 1");
         enderecoDTO.setNumero(1);
@@ -74,7 +76,7 @@ class ConsultaControllerTest {
 
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
-    void registrarPaciente() throws Exception {
+    void registrar2() throws Exception {
         EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"A",1, "A", "A", "A", "A"));
 
         PacienteDTO pacienteDTO = new PacienteDTO();
@@ -99,7 +101,7 @@ class ConsultaControllerTest {
 
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
-    void registrarDentista() throws Exception{
+    void registrar3() throws Exception{
         DentistaDTO dentistaDTO = new DentistaDTO();
 
         dentistaDTO.setNome("Nome teste 1");
@@ -121,16 +123,16 @@ class ConsultaControllerTest {
 
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
-    void cadastrarConsulta() throws Exception {
-        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"A",1, "A", "A", "A", "A"));
-        DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "A", "A", 123));
-        PacienteEntity paciente = new PacienteEntity(new PacienteDTO(1, "A", "A", endereco, "123", Date.from(Instant.now())));
+    void registrar4() throws Exception {
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Endereço teste 1",1, "Endereço teste 1", "Endereço teste 1", "Endereço teste 1", "11111-111"));
+        DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "Dentista teste 1", "Dentista teste 1", 123456));
+        PacienteEntity paciente = new PacienteEntity(new PacienteDTO(1, "Paciente teste 1", "Paciente teste 1", endereco, "11111111-1", Date.from(Instant.now())));
         ConsultaDTO consultaDTO = new ConsultaDTO();
 
         consultaDTO.setPaciente(paciente);
         consultaDTO.setDentista(dentista);
-        consultaDTO.setData(Date.from(Instant.now()));
-        consultaDTO.setHora(LocalTime.now());
+        consultaDTO.setData(Date.valueOf(LocalDate.now()));
+        consultaDTO.setHora(Time.valueOf(LocalTime.now()));
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/consulta/cadastrar")
                         .contentType(MediaType.APPLICATION_JSON)
