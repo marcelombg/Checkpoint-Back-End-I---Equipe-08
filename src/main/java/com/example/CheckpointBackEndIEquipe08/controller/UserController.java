@@ -17,7 +17,6 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-
     @PostMapping
     public ResponseEntity<String> create(@RequestBody UserDTO userDTO){
 
@@ -28,7 +27,6 @@ public class UserController {
         }
 
         return new ResponseEntity<>("Usuário não criado.", HttpStatus.CONFLICT);
-
     }
 
 }

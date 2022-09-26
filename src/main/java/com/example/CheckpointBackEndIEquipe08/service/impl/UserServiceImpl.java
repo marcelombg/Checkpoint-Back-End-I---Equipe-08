@@ -36,6 +36,5 @@ public class UserServiceImpl implements UserDetailsService {
         }
 
         return true;
-
     }
 }

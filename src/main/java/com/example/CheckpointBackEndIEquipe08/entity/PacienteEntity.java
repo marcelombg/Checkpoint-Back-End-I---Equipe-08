@@ -1,7 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,7 +15,6 @@ public class PacienteEntity {
     private String nome;
     private String sobrenome;
 
-    /*@JsonIgnore*/  // Vai ser usado qdo tiver o endereço
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private EnderecoEntity endereco;
@@ -82,5 +80,4 @@ public class PacienteEntity {
     public void setDataAlta(Date dataAlta) {
         this.dataAlta = dataAlta;
     }
-
 }

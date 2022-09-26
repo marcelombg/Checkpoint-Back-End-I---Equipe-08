@@ -7,7 +7,6 @@ import com.example.CheckpointBackEndIEquipe08.repository.IPacienteRepository;
 import com.example.CheckpointBackEndIEquipe08.service.impl.EnderecoServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.service.impl.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 
