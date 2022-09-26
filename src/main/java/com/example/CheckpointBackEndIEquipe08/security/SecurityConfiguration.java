@@ -33,12 +33,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/user/**").permitAll()
-                .antMatchers("/paciente/registrar").permitAll()
-                .antMatchers("/endereco/registrar").permitAll()
-                /*.antMatchers("/consulta","/endereco","/dentista","/paciente").hasAnyRole("ADMIN")
-                .antMatchers("/consulta/cadastrar").hasAnyRole("PACIENTE")*/
-                .antMatchers(HttpMethod.GET,"/endereco/**").hasAnyRole("PACIENTE","ADMIN")
+                .antMatchers("/user/").permitAll()
+                .antMatchers("/endereco/","/paciente/","/consulta/","/dentista/**").hasAnyRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/endereco/registrar","/paciente/registrar").hasAnyRole("PACIENTE")
+                .antMatchers(HttpMethod.POST,"/dentista/registrar").hasAnyRole("DENTISTA")
+                .antMatchers(HttpMethod.GET,"/endereco/{id}","/consulta/{id}").hasAnyRole("PACIENTE")
+                .antMatchers(HttpMethod.GET,"/dentista/{id}","/consulta/{id}").hasAnyRole("DENTISTA")
+                .antMatchers(HttpMethod.PUT,"/endereco/{id}","/paciente/{id}").hasAnyRole("PACIENTE")
+                .antMatchers(HttpMethod.PUT,"/dentista/{id}").hasAnyRole("DENTISTA")
                 .anyRequest()
                 .authenticated().and()
                 //.formLogin();
