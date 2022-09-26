@@ -16,7 +16,6 @@ public class PacienteEntity {
     private String nome;
     private String sobrenome;
 
-    /*@JsonIgnore*/  // Vai ser usado qdo tiver o endereço
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "endereco_id")
     private EnderecoEntity endereco;

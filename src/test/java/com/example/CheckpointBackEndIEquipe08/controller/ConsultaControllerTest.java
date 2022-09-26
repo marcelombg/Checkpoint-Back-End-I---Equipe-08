@@ -1,6 +1,10 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
+import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
+import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +21,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.sql.Date;
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalTime;
 
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.objectFromString;
@@ -27,7 +33,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class PacienteControllerTest {
+class ConsultaControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -75,13 +81,13 @@ class PacienteControllerTest {
         pacienteDTO.setNome("Paciente nome teste");
         pacienteDTO.setSobrenome("Paciente Sobrenome teste");
         pacienteDTO.setEndereco(endereco);
-        pacienteDTO.setDataAlta(Date.from(Instant.now()));
+        pacienteDTO.setDataAlta(java.util.Date.from(Instant.now()));
         pacienteDTO.setRG("12345654");
 
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/paciente/registrar")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .content(asJsonString(pacienteDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(pacienteDTO)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
@@ -89,5 +95,54 @@ class PacienteControllerTest {
         String responseBody = mvcResult.getResponse().getContentAsString();
         pacienteDTO = objectFromString(PacienteDTO.class, responseBody);
         assertNotNull(pacienteDTO.getId());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void registrarDentista() throws Exception{
+        DentistaDTO dentistaDTO = new DentistaDTO();
+
+        dentistaDTO.setNome("Nome teste 1");
+        dentistaDTO.setSobrenome("Sobrenome teste 1");
+        dentistaDTO.setMatriculaCadastro(123456);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+        assertNotNull(dentistaDTO.getId());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void cadastrarConsulta() throws Exception {
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"A",1, "A", "A", "A", "A"));
+        DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "A", "A", 123));
+        PacienteEntity paciente = new PacienteEntity(new PacienteDTO(1, "A", "A", endereco, "123", Date.from(Instant.now())));
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+
+        consultaDTO.setPaciente(paciente);
+        consultaDTO.setDentista(dentista);
+        consultaDTO.setData(Date.from(Instant.now()));
+        consultaDTO.setHora(LocalTime.now());
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/consulta/cadastrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(consultaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+        consultaDTO = objectFromString(ConsultaDTO.class, responseBody);
+
+        assertNotNull(consultaDTO.getId());
     }
 }

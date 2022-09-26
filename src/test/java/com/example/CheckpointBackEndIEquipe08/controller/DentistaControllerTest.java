@@ -42,6 +42,7 @@ class DentistaControllerTest {
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void registrar() throws Exception{
         DentistaDTO dentistaDTO = new DentistaDTO();
+
         dentistaDTO.setNome("Nome teste 1");
         dentistaDTO.setSobrenome("Sobrenome teste 1");
         dentistaDTO.setMatriculaCadastro(123456);
@@ -55,9 +56,7 @@ class DentistaControllerTest {
                 .andReturn();
 
         String responseBody = mvcResult.getResponse().getContentAsString();
-
         dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
-
         assertNotNull(dentistaDTO.getId());
     }
 }
