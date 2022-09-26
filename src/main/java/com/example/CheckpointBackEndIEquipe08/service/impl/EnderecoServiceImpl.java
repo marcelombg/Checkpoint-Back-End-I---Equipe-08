@@ -70,7 +70,7 @@ public class EnderecoServiceImpl implements IService<EnderecoDTO> {
         return endereco;
     }
 
-    public boolean ifEnderecoExists (int id) {
+    public boolean ifEnderecoExists  (int id) {
         return enderecoRepository.existsById(id);
     }
 

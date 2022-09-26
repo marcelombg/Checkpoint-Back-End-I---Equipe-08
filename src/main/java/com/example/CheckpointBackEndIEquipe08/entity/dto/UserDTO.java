@@ -2,7 +2,6 @@ package com.example.CheckpointBackEndIEquipe08.entity.dto;
 
 import com.example.CheckpointBackEndIEquipe08.entity.UserEntity;
 import com.example.CheckpointBackEndIEquipe08.enums.UserRoles;
-
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

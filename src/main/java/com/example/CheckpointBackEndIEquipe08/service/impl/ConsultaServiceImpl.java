@@ -79,8 +79,8 @@ public class ConsultaServiceImpl implements IService <ConsultaDTO> {
     }
 
     @Override
-    public ConsultaDTO buscarID(int id) {
-        ConsultaEntity consultaEntity = iConsultaRepository.findById(id).get();
+    public ConsultaDTO buscarID(int id) throws NotFoundException {
+        ConsultaEntity consultaEntity = iConsultaRepository.findById(id).orElseThrow(() -> new NotFoundException("Consulta não encontrada com o id: " + id));
         ConsultaDTO consultaDTO = mapperEntityToDTO(consultaEntity);
         return consultaDTO;
     }

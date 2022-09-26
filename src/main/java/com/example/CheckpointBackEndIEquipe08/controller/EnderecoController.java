@@ -30,13 +30,6 @@ public class EnderecoController {
             EnderecoDTO enderecoDTO1 = enderecoService.registrar(enderecoDTO);
             responseEntity = new ResponseEntity<>(enderecoDTO1, HttpStatus.OK);
         }
-
-//        if (enderecoDTO.getRua() != null){
-//            EnderecoDTO enderecoDTO1 = enderecoService.registrar(enderecoDTO);
-//            responseEntity = new ResponseEntity<>(enderecoDTO1, HttpStatus.OK);
-//        } else {
-//            responseEntity = new ResponseEntity<>("Rua não preenchida.", HttpStatus.BAD_REQUEST);
-//        }
         return responseEntity;
     }
 
@@ -57,16 +50,9 @@ public class EnderecoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<EnderecoDTO> buscarID(@PathVariable int id) throws NotFoundException {
-//        ResponseEntity responseEntity = null;
-//        EnderecoDTO enderecoDTO = enderecoService.buscarID(id);
-//
-//        if (enderecoDTO != null){
-//            responseEntity = new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
-//        } else {
-//            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
-//        }
-//        return responseEntity;
-//    }
         return new ResponseEntity<>(enderecoService.buscarID(id), HttpStatus.OK);
     }
+
+
+
 }

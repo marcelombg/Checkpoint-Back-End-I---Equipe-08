@@ -2,6 +2,7 @@ package com.example.CheckpointBackEndIEquipe08.service.impl;
 
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
+import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.repository.IDentistaRepository;
 import com.example.CheckpointBackEndIEquipe08.service.IService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,8 +26,8 @@ public class DentistaServiceImpl implements IService<DentistaDTO> {
     }
 
     @Override
-    public DentistaDTO buscarID(int id) {
-        DentistaEntity dentistaEntity = iDentistaRepository.findById(id).get();
+    public DentistaDTO buscarID(int id) throws NotFoundException {
+        DentistaEntity dentistaEntity = iDentistaRepository.findById(id).orElseThrow(() -> new NotFoundException("Dentista não encontrado com o id: " + id));
         DentistaDTO dentistaDTO = mapperEntityToDTO(dentistaEntity);
         return dentistaDTO;
     }
