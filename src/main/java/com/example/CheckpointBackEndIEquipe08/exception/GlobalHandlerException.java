@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import java.time.LocalDateTime;
 
 @ControllerAdvice
@@ -17,12 +16,10 @@ public class GlobalHandlerException {
 
     }
 
-
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ResponseException> handlerNotFoundException (NotFoundException excepetion ) {
         ResponseException responseException  = new ResponseException(HttpStatus.NOT_FOUND.value(), excepetion.getMessage(), LocalDateTime.now());
 
         return new ResponseEntity<>(responseException, HttpStatus.NOT_ACCEPTABLE);
-
     }
 }

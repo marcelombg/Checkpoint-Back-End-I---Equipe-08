@@ -4,7 +4,6 @@ import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.Date;
 
 @Entity

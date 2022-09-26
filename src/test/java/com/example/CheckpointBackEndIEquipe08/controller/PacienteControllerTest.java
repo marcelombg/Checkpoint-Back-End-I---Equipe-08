@@ -19,7 +19,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import java.time.Instant;
 import java.util.Date;
-
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.objectFromString;
 import static org.junit.jupiter.api.Assertions.*;

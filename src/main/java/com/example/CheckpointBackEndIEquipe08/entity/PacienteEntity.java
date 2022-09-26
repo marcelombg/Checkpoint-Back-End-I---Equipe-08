@@ -1,7 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.entity;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.PacienteDTO;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -81,5 +80,4 @@ public class PacienteEntity {
     public void setDataAlta(Date dataAlta) {
         this.dataAlta = dataAlta;
     }
-
 }

@@ -3,14 +3,9 @@ package com.example.CheckpointBackEndIEquipe08.entity.dto;
 import com.example.CheckpointBackEndIEquipe08.entity.ConsultaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.DentistaEntity;
 import com.example.CheckpointBackEndIEquipe08.entity.PacienteEntity;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Date;
 
-/*@JsonIgnoreProperties(ignoreUnknown = true)*/
 public class ConsultaDTO {
     private Integer id;
     private DentistaEntity dentista;

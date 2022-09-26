@@ -1,9 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
-import com.example.CheckpointBackEndIEquipe08.entity.EnderecoEntity;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +15,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.objectFromString;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.web.servlet.function.RequestPredicates.contentType;
 
 @SpringBootTest
 @AutoConfigureMockMvc
