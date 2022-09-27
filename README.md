@@ -6,7 +6,7 @@ Para utilizar o sistema, por gentileza siga os passos abaixo:
 
 1º - Dê um play no arquivo de applicação CheckpointBackEndIEquipe08Application;
 
-2º A partir deste momento, abra o postman para seguir os passos 3, 4, 5, 6, 7, 8 e 9; 
+2º - A partir deste momento, abra o postman para seguir os passos 3, 4, 5, 6, 7, 8 e 9; 
 
 3º - Cadastre um usuário (endpoint http://localhost:8081/user);
     Os tipos de usuários que temos disponíveis são: ROLE_PACIENTE, ROLE_DENTISTA, ROLE_ADMIN.
@@ -18,36 +18,39 @@ Para utilizar o sistema, por gentileza siga os passos abaixo:
 4º - Crie uma autenticação para este usuário (endpoint http://localhost:8081/user/authenticate). 
     O JWT da autenticação deverá ser usado de agora em diante em todos os endpoints;
 
-5º - Cadastre o endereço (endpoint http://localhost:8081/endereco/registrar);
+5º - Cadastre o endereço (PUT, endpoint http://localhost:8081/endereco/registrar);
 
-6º - Cadastre o paciente (endpoint http://localhost:8081/paciente/registrar);
+6º - Cadastre o paciente (PUT, endpoint http://localhost:8081/paciente/registrar);
 
-7º - Cadastre o dentista (endpoint http://localhost:8081/dentista/registrar);
+7º - Cadastre o dentista (PUT, endpoint http://localhost:8081/dentista/registrar);
 
-8º - Cadastre a consulta (endpoint http://localhost:8081/consulta/cadastrar);
+8º - Cadastre a consulta (PUT, endpoint http://localhost:8081/consulta/cadastrar);
 
-9º - A partir deste momento é, respeitando as regras de usuários do passo 2, é possível:
-    Realizar uma busca por ID em todas as classes (GET), usando os endpoints:
+9º - Realize uma busca por ID em todas as classes (GET), usando os endpoints:
     http://localhost:8081/endereco/{id});
     http://localhost:8081/paciente/{id});
     http://localhost:8081/dentista/{id});
     http://localhost:8081/consulta/{id}); 
-    Realizar uma busca por todas as classes (GET), usando os endpoints:
+
+10º - Realize uma busca por todas as classes (GET), usando os endpoints:
     http://localhost:8081/endereco/buscar);
     http://localhost:8081/paciente/buscar);
     http://localhost:8081/dentista/buscar);
     http://localhost:8081/consulta/buscar);
-    Modificar um cadastro (PUT), usando os endpoints:
-    http://localhost:8081/endereco/{id});
-    http://localhost:8081/paciente/{id});
-    http://localhost:8081/dentista/{id});
-    http://localhost:8081/consulta/{id});
-    Modificar um cadastro (DELETE), usando os endpoints:
+
+11º - Realize um cadastro (PUT), usando os endpoints:
     http://localhost:8081/endereco/{id});
     http://localhost:8081/paciente/{id});
     http://localhost:8081/dentista/{id});
     http://localhost:8081/consulta/{id});
 
-10º - As validações para exceptions estão na pasta main/java/CheckpointBackEndIEquipe08/validacoes;
+12º - Delete um cadastro (DELETE), usando os endpoints (para deletar qualquer cadastro, será necessário fazer o caminho
+contrário em que foram feitos os registros, ou seja, respeitando a ordem consulta > dentista > paciente > endereço):
+    http://localhost:8081/endereco/{id});
+    http://localhost:8081/paciente/{id});
+    http://localhost:8081/dentista/{id});
+    http://localhost:8081/consulta/{id});
 
-11º - Os testes unitários estão dentro da pasta test/java/controller.
+13º - As validações para exceptions estão na pasta main/java/CheckpointBackEndIEquipe08/validacoes;
+
+14º - Os testes unitários estão dentro da pasta test/java/controller.

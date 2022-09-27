@@ -14,23 +14,18 @@ public class ValidationConsulta {
         if (consultaDTO.getDentista().getId() == null || consultaDTO.getDentista().getId()==0) {
             variables.add("Dentista");
         }
-
         if (consultaDTO.getPaciente().getId() == null || consultaDTO.getPaciente().getId()==0) {
             variables.add("Dentista");
         }
-
         if (consultaDTO.getData()==null) {
             variables.add("Data");
         }
-
         if (consultaDTO.getHora()==null) {
             variables.add("Hora");
         }
-
         if(!variables.isEmpty()) {
             throw new VariableNullException("Verifique as variáveis listadas: ", variables);
         }
-
         return true;
     }
 }

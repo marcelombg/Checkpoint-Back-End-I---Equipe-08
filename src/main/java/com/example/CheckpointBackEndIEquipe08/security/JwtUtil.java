@@ -16,12 +16,10 @@ public class JwtUtil {
     private String SECRET_KEY = "secret";
 
     public String extractUserName(String token) {
-
         return extractClaimUsername(token);
     }
 
     public Date extractExpiration(String token) {
-
         return extractClaimDate(token);
     }
 
@@ -57,7 +55,6 @@ public class JwtUtil {
     }
 
     private boolean isTokenExpired(String token) {
-
         return extractExpiration(token).before(new Date());
     }
 

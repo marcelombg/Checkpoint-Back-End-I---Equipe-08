@@ -10,7 +10,7 @@
 			"name": "User",
 			"item": [
 				{
-					"name": "Save user",
+					"name": "Salvar usuário",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -21,7 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Teste\",\n    \"username\": \"Teste\",\n    \"email\": \"teste@teste.com\",\n    \"password\": \"123456\",\n    \"userRoles\": \"ROLE_ADMIN\"\n}\n\n// {\n// \t\"name\": \"Teste2\",\n//     \"username\": \"Teste2\",\n//     \"email\": \"teste2@teste2.com\",\n//     \"password\": \"1234567\",\n//     \"userRoles\": \"ROLE_PACIENTE\"\n// }\n\n// {\n// \t\"name\": \"Teste3\",\n//     \"username\": \"Teste3\",\n//     \"email\": \"teste3@teste3.com\",\n//     \"password\": \"1234568\",\n//     \"userRoles\": \"ROLE_DENTISTA\"\n// }"
+							"raw": "{\n\t\"name\": \"Teste\",\n    \"username\": \"Teste\",\n    \"email\": \"teste@teste.com\",\n    \"password\": \"123456\",\n    \"userRoles\": \"ROLE_ADMIN\"\n}\n\n// {\n// \t\"name\": \"Teste 2\",\n//     \"username\": \"Teste 2\",\n//     \"email\": \"teste2@teste2.com\",\n//     \"password\": \"1234567\",\n//     \"userRoles\": \"ROLE_PACIENTE\"\n// }\n\n// {\n// \t\"name\": \"Teste3\",\n//     \"username\": \"Teste3\",\n//     \"email\": \"teste3@teste3.com\",\n//     \"password\": \"1234568\",\n//     \"userRoles\": \"ROLE_DENTISTA\"\n// }"
 						},
 						"url": {
 							"raw": "http://localhost:8081/user",
@@ -38,7 +38,7 @@
 					"response": []
 				},
 				{
-					"name": "Authenticate user",
+					"name": "Autenticar usuário",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -49,7 +49,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"Teste\",\n    \"password\": \"123456\"\n}\n\n// {\n//     \"username\": \"Teste2\",\n//     \"password\": \"1234567\",\n// }\n\n// {\n//     \"username\": \"Teste3\",\n//     \"password\": \"1234568\",\n// }"
+							"raw": "{\n    \"username\": \"Teste\",\n    \"password\": \"123456\"\n}\n\n// {\n//     \"username\": \"Teste2\",\n//     \"password\": \"1234567\"\n// }\n\n// {\n//     \"username\": \"Teste3\",\n//     \"password\": \"1234568\"\n// }"
 						},
 						"url": {
 							"raw": "http://localhost:8081/user/authenticate",
@@ -79,7 +79,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -93,7 +93,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"rua\": \"Rua teste 1\",\n\t\"numero\": 1,\n\t\"cidade\": \"Cidade teste 1\",\n\t\"estado\": \"Estado teste 1\",\n\t\"pais\": \"Pais teste 1\",\n    \"cep\": \"CEP teste 1\"\n}"
+							"raw": "{\n\t\"rua\": \"Rua teste 1\",\n\t\"numero\": 1,\n\t\"cidade\": \"Cidade teste 1\",\n\t\"estado\": \"Estado teste 1\",\n\t\"pais\": \"Pais teste 1\",\n    \"cep\": \"1111-111\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8081/endereco/registrar",
@@ -121,7 +121,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -163,7 +163,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -202,7 +202,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -241,7 +241,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNTQ3MSwiaWF0IjoxNjY0MjM0ODcxfQ.jf8i24f35cJ7C5S0b6iXXJSq_kpY3fYuYqRuD3bJvkk",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -276,7 +276,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -290,7 +290,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nome\":\"Nome teste 1\",\n\t\"sobrenome\": \"Sobrenome teste 1\",\n\t\"endereco\": {\n        \"id\": 1\n        },\n\t\"dataAlta\": \"20220521\",\n    \"rg\": \"11111111-1\"\n}"
+							"raw": "{\n\t\"nome\":\"Nome teste 1\",\n\t\"sobrenome\": \"Sobrenome teste 1\",\n\t\"endereco\": {\n        \"id\": 1\n        },\n\t\"dataAlta\": \"1900-01-01T05:00:00.521+00:00\",\n    \"rg\": \"11111111-1\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8081/paciente/registrar",
@@ -318,7 +318,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -360,7 +360,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -399,7 +399,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -408,7 +408,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 1,\r\n        \"nome\": \"Nome Modificar 1\",\r\n        \"sobrenome\": \"Sobrenome Modificar 1\",\r\n        \"endereco\": {\r\n            \"id\": 1,\r\n            \"rua\": \"Rua teste 1\",\r\n            \"numero\": 1,\r\n            \"cidade\": \"Cidade teste 1\",\r\n            \"estado\": \"Estado teste 1\",\r\n            \"pais\": \"Pais teste 1\",\r\n            \"cep\": \"CEP teste 1\"\r\n        },\r\n        \"dataAlta\": \"1970-01-01T05:37:00.521+00:00\",\r\n        \"rg\": \"RG Modificar 1\"\r\n}",
+							"raw": "{\r\n        \"id\": 1,\r\n        \"nome\": \"Nome Modificar 1\",\r\n        \"sobrenome\": \"Sobrenome Modificar 1\",\r\n        \"endereco\": {\r\n            \"id\": 1,\r\n            \"rua\": \"Rua teste 1\",\r\n            \"numero\": 1,\r\n            \"cidade\": \"Cidade teste 1\",\r\n            \"estado\": \"Estado teste 1\",\r\n            \"pais\": \"Pais teste 1\",\r\n            \"cep\": \"CEP teste 1\"\r\n        },\r\n        \"dataAlta\": \"1990-01-01T05:00:00.521+00:00\",\r\n        \"rg\": \"22222222-2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -438,7 +438,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNTQ3MSwiaWF0IjoxNjY0MjM0ODcxfQ.jf8i24f35cJ7C5S0b6iXXJSq_kpY3fYuYqRuD3bJvkk",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -473,7 +473,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDI3OTE3NSwiaWF0IjoxNjY0Mjc4NTc1fQ.MM157G3Xs6otlv3q0--1_gvnSiwWUi0eQnGGndoYYxk",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -510,6 +510,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -547,7 +557,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -581,6 +591,16 @@
 				{
 					"name": "Modificar dentista pelo ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -615,7 +635,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDI3OTE3NSwiaWF0IjoxNjY0Mjc4NTc1fQ.MM157G3Xs6otlv3q0--1_gvnSiwWUi0eQnGGndoYYxk",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -650,7 +670,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -692,7 +712,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -734,7 +754,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -773,7 +793,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNjU2NywiaWF0IjoxNjY0MjM1OTY3fQ.OCXT7gPYgmyUcfQA4YxhEpZPP0rUmAuU1fVRg2nI51o",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]
@@ -782,7 +802,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 1,\r\n    \"dentista\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Nome modificar 1\",\r\n        \"sobrenome\": \"Sobrenome modificar 1\",\r\n        \"matriculaCadastro\": 123456\r\n    },\r\n    \"paciente\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Nome modificar 1\",\r\n        \"sobrenome\": \"Sobrenome modificar 1\",\r\n        \"endereco\": {\r\n            \"id\": 1,\r\n            \"rua\": \"Rua teste 2\",\r\n            \"numero\": 1,\r\n            \"cidade\": \"Cidade teste 1\",\r\n            \"estado\": \"Estado teste 1\",\r\n            \"pais\": \"Pais teste 1\",\r\n            \"cep\": \"CEP teste 1\"\r\n        },\r\n        \"dataAlta\": \"1970-01-01T05:37:00.521+00:00\",\r\n        \"rg\": \"11111111-1\"\r\n    },\r\n    \"data\": \"2022-01-01T00:00:00.015+00:00\",\r\n    \"hora\": \"00:00:00\"\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"dentista\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Nome teste 1\",\r\n        \"sobrenome\": \"Sobrenome teste 1\",\r\n        \"matriculaCadastro\": 123456\r\n    },\r\n    \"paciente\": {\r\n        \"id\": 1,\r\n        \"nome\": \"Nome teste 1\",\r\n        \"sobrenome\": \"Sobrenome teste 1\",\r\n        \"endereco\": {\r\n            \"id\": 1,\r\n            \"rua\": \"Rua teste 1\",\r\n            \"numero\": 1,\r\n            \"cidade\": \"Cidade teste 1\",\r\n            \"estado\": \"Estado teste 1\",\r\n            \"pais\": \"Pais teste 1\",\r\n            \"cep\": \"1111-111\"\r\n        },\r\n        \"dataAlta\": \"1900-01-01T05:00:00.521+00:00\",\r\n        \"rg\": \"11111111-1\"\r\n    },\r\n    \"data\": \"2022-01-01T00:00:00.015+00:00\",\r\n    \"hora\": \"00:00:00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -812,7 +832,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDIzNTQ3MSwiaWF0IjoxNjY0MjM0ODcxfQ.jf8i24f35cJ7C5S0b6iXXJSq_kpY3fYuYqRuD3bJvkk",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJUZXN0ZSIsImV4cCI6MTY2NDMwMzYxNywiaWF0IjoxNjY0MzAzMDE3fQ.YHEeUPblp0FisFO13Gm3D1lWatgzF79jCkBa4nHeIKs",
 									"type": "string"
 								}
 							]

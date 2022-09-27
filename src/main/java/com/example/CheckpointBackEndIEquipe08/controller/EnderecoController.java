@@ -52,7 +52,4 @@ public class EnderecoController {
     public ResponseEntity<EnderecoDTO> buscarID(@PathVariable int id) throws NotFoundException {
         return new ResponseEntity<>(enderecoService.buscarID(id), HttpStatus.OK);
     }
-
-
-
 }

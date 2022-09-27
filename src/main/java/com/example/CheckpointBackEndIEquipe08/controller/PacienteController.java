@@ -59,15 +59,6 @@ public class PacienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PacienteDTO> buscarID(@PathVariable int id) throws NotFoundException {
-//        ResponseEntity responseEntity = null;
-//        PacienteDTO pacienteDTO = pacienteService.buscarID(id);
-//
-//        if (pacienteDTO != null){
-//            responseEntity = new ResponseEntity<>(pacienteDTO, HttpStatus.OK);
-//        } else {
-//            responseEntity = new ResponseEntity<>("ID não encontrado", HttpStatus.NOT_FOUND);
-//        }
-//        return responseEntity;
         return new ResponseEntity<>(pacienteService.buscarID(id), HttpStatus.OK);
     }
 }

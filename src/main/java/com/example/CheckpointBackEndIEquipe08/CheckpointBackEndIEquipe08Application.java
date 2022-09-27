@@ -9,5 +9,4 @@ public class CheckpointBackEndIEquipe08Application {
 	public static void main(String[] args) {
 		SpringApplication.run(CheckpointBackEndIEquipe08Application.class, args);
 	}
-
 }

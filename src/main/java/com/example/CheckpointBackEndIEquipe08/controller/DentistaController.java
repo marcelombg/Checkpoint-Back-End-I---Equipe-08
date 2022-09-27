@@ -26,7 +26,6 @@ public class DentistaController {
 
         Boolean erro = validationDentista.validationDentistaVariables(dentistaDTO);
 
-
         if (erro) {
             DentistaDTO dentistaDTO1 = dentistaService.registrar(dentistaDTO);
             responseEntity = new ResponseEntity<>(dentistaDTO1, HttpStatus.OK);
