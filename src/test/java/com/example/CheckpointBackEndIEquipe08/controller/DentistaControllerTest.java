@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.objectFromString;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringBootTest
@@ -57,5 +57,67 @@ class DentistaControllerTest {
         String responseBody = mvcResult.getResponse().getContentAsString();
         dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
         assertNotNull(dentistaDTO.getId());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void buscarId() throws Exception {
+        DentistaDTO dentistaDTO = new DentistaDTO();
+
+        dentistaDTO.setNome("Dentista teste 1");
+        dentistaDTO.setSobrenome("Dentista teste 1");
+        dentistaDTO.setMatriculaCadastro(123456);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/dentista/{id}", dentistaDTO.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        responseBody = mvcResult.getResponse().getContentAsString();
+
+        DentistaDTO dentistaDTO1 = objectFromString(DentistaDTO.class, responseBody);
+
+        assertEquals(dentistaDTO.getId(), dentistaDTO1.getId());
+        assertEquals(dentistaDTO.getNome(), dentistaDTO1.getNome());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void excluir() throws Exception{
+        DentistaDTO dentistaDTO = new DentistaDTO();
+
+        dentistaDTO.setNome("Dentista teste 1");
+        dentistaDTO.setSobrenome("Dentista teste 1");
+        dentistaDTO.setMatriculaCadastro(123456);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/dentista/{id}", dentistaDTO.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
