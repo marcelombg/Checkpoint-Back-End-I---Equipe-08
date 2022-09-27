@@ -148,6 +148,93 @@ class ConsultaControllerTest {
 
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void buscarId() throws Exception {
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Endereço teste 1",1, "Endereço teste 1", "Endereço teste 1", "Endereço teste 1", "11111-111"));
+        DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "Dentista teste 1", "Dentista teste 1", 123456));
+        PacienteEntity paciente = new PacienteEntity(new PacienteDTO(1, "Paciente teste 1", "Paciente teste 1", endereco, "11111111-1", Date.from(Instant.now())));
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+
+        consultaDTO.setPaciente(paciente);
+        consultaDTO.setDentista(dentista);
+        consultaDTO.setData(Date.valueOf(LocalDate.now()));
+        consultaDTO.setHora(Time.valueOf(LocalTime.now()));
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/consulta/cadastrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(consultaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        consultaDTO = objectFromString(ConsultaDTO.class, responseBody);
+
+        mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/consulta/{id}", consultaDTO.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        responseBody = mvcResult.getResponse().getContentAsString();
+
+        ConsultaDTO consultaDTO1 = objectFromString(ConsultaDTO.class, responseBody);
+
+        assertEquals(consultaDTO.getId(), consultaDTO1.getId());
+        assertEquals(consultaDTO.getData(), consultaDTO1.getData());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void buscarTodos() throws Exception {
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Endereço teste 1",1, "Endereço teste 1", "Endereço teste 1", "Endereço teste 1", "11111-111"));
+        DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "Dentista teste 1", "Dentista teste 1", 123456));
+        PacienteEntity paciente = new PacienteEntity(new PacienteDTO(1, "Paciente teste 1", "Paciente teste 1", endereco, "11111111-1", Date.from(Instant.now())));
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+
+        consultaDTO.setPaciente(paciente);
+        consultaDTO.setDentista(dentista);
+        consultaDTO.setData(Date.valueOf(LocalDate.now()));
+        consultaDTO.setHora(Time.valueOf(LocalTime.now()));
+
+        ConsultaDTO consultaDTO1 = new ConsultaDTO();
+
+        consultaDTO1.setPaciente(paciente);
+        consultaDTO1.setDentista(dentista);
+        consultaDTO1.setData(Date.valueOf(LocalDate.now()));
+        consultaDTO1.setHora(Time.valueOf(LocalTime.now()));
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/consulta/cadastrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(consultaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        MvcResult mvcResult2 = mockMvc.perform(MockMvcRequestBuilders.post("/consulta/cadastrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(consultaDTO1)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        consultaDTO = objectFromString(ConsultaDTO.class, responseBody);
+        consultaDTO1 = objectFromString(ConsultaDTO.class, responseBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/consulta/buscar", consultaDTO.getId(), consultaDTO1.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void excluir() throws Exception{
         EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Endereço teste 1",1, "Endereço teste 1", "Endereço teste 1", "Endereço teste 1", "11111-111"));
         DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "Dentista teste 1", "Dentista teste 1", 123456));

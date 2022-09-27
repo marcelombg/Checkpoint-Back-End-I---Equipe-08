@@ -96,6 +96,49 @@ class DentistaControllerTest {
 
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void buscarTodos() throws Exception {
+        DentistaDTO dentistaDTO = new DentistaDTO();
+
+        dentistaDTO.setNome("Dentista teste 1");
+        dentistaDTO.setSobrenome("Dentista teste 1");
+        dentistaDTO.setMatriculaCadastro(123456);
+
+        DentistaDTO dentistaDTO1 = new DentistaDTO();
+
+        dentistaDTO1.setNome("Dentista teste 2");
+        dentistaDTO1.setSobrenome("Dentista teste 2");
+        dentistaDTO1.setMatriculaCadastro(7890);
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        MvcResult mvcResult2 = mockMvc.perform(MockMvcRequestBuilders.post("/dentista/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(dentistaDTO1)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        dentistaDTO = objectFromString(DentistaDTO.class, responseBody);
+        dentistaDTO1 = objectFromString(DentistaDTO.class, responseBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/dentista/buscar", dentistaDTO.getId(), dentistaDTO1.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void excluir() throws Exception{
         DentistaDTO dentistaDTO = new DentistaDTO();
 

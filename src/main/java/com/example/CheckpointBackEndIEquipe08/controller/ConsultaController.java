@@ -57,7 +57,7 @@ public class ConsultaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ConsultaDTO> buscarID(@PathVariable int id) throws NotFoundException {
-        return new ResponseEntity<>(consultaServiceImpl.buscarID(id), HttpStatus.CREATED);
+        return new ResponseEntity<>(consultaServiceImpl.buscarID(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
