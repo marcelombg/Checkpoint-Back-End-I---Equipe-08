@@ -1,7 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.validacoes;
 
 import com.example.CheckpointBackEndIEquipe08.entity.dto.ConsultaDTO;
-import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import com.example.CheckpointBackEndIEquipe08.exception.VariableNullException;
 
 import java.util.ArrayList;

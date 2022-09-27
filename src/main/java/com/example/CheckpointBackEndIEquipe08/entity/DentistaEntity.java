@@ -13,7 +13,7 @@ public class DentistaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = false, nullable = false)
     private String nome;
     private String sobrenome;
     private Integer matriculaCadastro;
