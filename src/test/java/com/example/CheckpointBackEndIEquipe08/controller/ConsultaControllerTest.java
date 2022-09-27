@@ -75,7 +75,7 @@ class ConsultaControllerTest {
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void registrar2() throws Exception {
-        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"A",1, "A", "A", "A", "A"));
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Rua teste 1",1, "Rua cidade 1", "Rua estado 1", "Rua pais 1", "11111-111"));
 
         PacienteDTO pacienteDTO = new PacienteDTO();
         pacienteDTO.setNome("Paciente nome teste");
@@ -144,5 +144,36 @@ class ConsultaControllerTest {
         consultaDTO = objectFromString(ConsultaDTO.class, responseBody);
 
         assertNotNull(consultaDTO.getId());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void excluir() throws Exception{
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Endereço teste 1",1, "Endereço teste 1", "Endereço teste 1", "Endereço teste 1", "11111-111"));
+        DentistaEntity dentista = new DentistaEntity(new DentistaDTO(1, "Dentista teste 1", "Dentista teste 1", 123456));
+        PacienteEntity paciente = new PacienteEntity(new PacienteDTO(1, "Paciente teste 1", "Paciente teste 1", endereco, "11111111-1", Date.from(Instant.now())));
+        ConsultaDTO consultaDTO = new ConsultaDTO();
+
+        consultaDTO.setPaciente(paciente);
+        consultaDTO.setDentista(dentista);
+        consultaDTO.setData(Date.valueOf(LocalDate.now()));
+        consultaDTO.setHora(Time.valueOf(LocalTime.now()));
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/consulta/cadastrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(consultaDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        consultaDTO = objectFromString(ConsultaDTO.class, responseBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/consulta/{id}", consultaDTO.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

@@ -1,5 +1,6 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
+import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,6 @@ import org.springframework.web.context.WebApplicationContext;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.asJsonString;
 import static com.example.CheckpointBackEndIEquipe08.utils.Utils.objectFromString;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -59,5 +59,34 @@ class EnderecoControllerTest {
         String responseBody = mvcResult.getResponse().getContentAsString();
         enderecoDTO = objectFromString(EnderecoDTO .class, responseBody);
         assertNotNull(enderecoDTO.getId());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void excluir() throws Exception{
+        EnderecoDTO enderecoDTO = new EnderecoDTO();
+        enderecoDTO.setRua("Endereço teste 1");
+        enderecoDTO.setNumero(1);
+        enderecoDTO.setCidade("Endereço teste 1");
+        enderecoDTO.setEstado("Endereço teste 1");
+        enderecoDTO.setPais("Endereço teste 1");
+        enderecoDTO.setCEP("11111-111");
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/endereco/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(enderecoDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        enderecoDTO = objectFromString(EnderecoDTO.class, responseBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/endereco/{id}", enderecoDTO.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

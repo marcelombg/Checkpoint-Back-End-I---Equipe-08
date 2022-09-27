@@ -68,7 +68,7 @@ class PacienteControllerTest {
     @Test
     @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
     void registrarPaciente() throws Exception {
-        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"A",1, "A", "A", "A", "A"));
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Rua teste 1",1, "Rua cidade 1", "Rua estado 1", "Rua pais 1", "11111-111"));
 
         PacienteDTO pacienteDTO = new PacienteDTO();
         pacienteDTO.setNome("Paciente teste 1");
@@ -88,5 +88,35 @@ class PacienteControllerTest {
         String responseBody = mvcResult.getResponse().getContentAsString();
         pacienteDTO = objectFromString(PacienteDTO.class, responseBody);
         assertNotNull(pacienteDTO.getId());
+    }
+
+    @Test
+    @WithMockUser(username = "Teste", password = "123456", roles = "ADMIN")
+    void excluir() throws Exception{
+        EnderecoEntity endereco = new EnderecoEntity(new EnderecoDTO(1,"Rua teste 1",1, "Rua cidade 1", "Rua estado 1", "Rua pais 1", "11111-111"));
+
+        PacienteDTO pacienteDTO = new PacienteDTO();
+        pacienteDTO.setNome("Paciente teste 1");
+        pacienteDTO.setSobrenome("Paciente teste 1");
+        pacienteDTO.setEndereco(endereco);
+        pacienteDTO.setDataAlta(Date.from(Instant.now()));
+        pacienteDTO.setRG("11111111-1");
+
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/paciente/registrar")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(pacienteDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String responseBody = mvcResult.getResponse().getContentAsString();
+
+        pacienteDTO = objectFromString(PacienteDTO.class, responseBody);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/paciente/{id}", pacienteDTO.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
