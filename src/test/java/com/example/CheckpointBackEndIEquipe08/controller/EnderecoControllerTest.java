@@ -1,6 +1,5 @@
 package com.example.CheckpointBackEndIEquipe08.controller;
 
-import com.example.CheckpointBackEndIEquipe08.entity.dto.DentistaDTO;
 import com.example.CheckpointBackEndIEquipe08.entity.dto.EnderecoDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
