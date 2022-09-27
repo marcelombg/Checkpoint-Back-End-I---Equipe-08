@@ -21,13 +21,47 @@ class UserControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void create() throws Exception{
+    void create1() throws Exception{
         UserDTO userDTO = new UserDTO();
         userDTO.setName("Teste");
         userDTO.setUsername("Teste");
         userDTO.setEmail("teste@teste.com");
         userDTO.setPassword("123456");
         userDTO.setUserRoles(UserRoles.ROLE_ADMIN);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(userDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
+    @Test
+    void create2() throws Exception{
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("Teste2");
+        userDTO.setUsername("Teste2");
+        userDTO.setEmail("teste2@teste2.com");
+        userDTO.setPassword("1234567");
+        userDTO.setUserRoles(UserRoles.ROLE_PACIENTE);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/user")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(userDTO)))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isCreated());
+    }
+
+    @Test
+    void create3() throws Exception{
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("Teste3");
+        userDTO.setUsername("Teste3");
+        userDTO.setEmail("teste3@teste3.com");
+        userDTO.setPassword("1234568");
+        userDTO.setUserRoles(UserRoles.ROLE_DENTISTA);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
