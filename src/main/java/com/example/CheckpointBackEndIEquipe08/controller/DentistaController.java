@@ -5,12 +5,14 @@ import com.example.CheckpointBackEndIEquipe08.exception.NotFoundException;
 import com.example.CheckpointBackEndIEquipe08.exception.VariableNullException;
 import com.example.CheckpointBackEndIEquipe08.service.impl.DentistaServiceImpl;
 import com.example.CheckpointBackEndIEquipe08.validacoes.ValidationDentista;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping("/dentista")
 public class DentistaController {

@@ -4,6 +4,7 @@ import com.example.CheckpointBackEndIEquipe08.entity.dto.UserDTO;
 import com.example.CheckpointBackEndIEquipe08.security.AuthenticationResponse;
 import com.example.CheckpointBackEndIEquipe08.security.JwtUtil;
 import com.example.CheckpointBackEndIEquipe08.service.impl.UserServiceImpl;
+import io.swagger.v3.oas.annotations.Parameters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,6 @@ public class UserController {
     public String msg(){
         return "<h1> Olá </h1>";
     }
-
 
     @PostMapping
     public ResponseEntity<String> create(@RequestBody UserDTO userDTO){

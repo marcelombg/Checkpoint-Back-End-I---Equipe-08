@@ -4,17 +4,25 @@ import com.example.CheckpointBackEndIEquipe08.enums.UserRoles;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class UserDTO {
 
+    @NotNull
     @Column(nullable = false)
     private String name;
+    @NotNull
     @Column(nullable = false, unique = true)
     private String username;
+    @NotNull
     @Column(nullable = false, unique = true)
     private String email;
+    @NotNull
+    @Size(min = 6, max = 12)
     @Column(nullable = false)
     private String password;
+    @NotNull
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRoles userRoles;
